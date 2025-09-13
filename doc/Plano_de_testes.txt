@@ -1,0 +1,12 @@
+REQ	Componente/Teste	Descrição do Caso de Teste
+1	Employee	Criação de objeto com valores válidos, validação de campos obrigatórios,  enum GrauInsalubridade
+2	Salário Hora (RF1)	Cálculo com salário positivo, salário zero (exceção), carga horária padrão/personalizada
+3	Periculosidade (RF2)	Adicional para funcionário com periculosidade, retorno zero, cálculo de 30%, 
+4	Insalubridade (RF3)	Adicional para grau baixo/médio/alto, retorno zero, atualização do salário mínimo
+5	Vale Transporte (RF4)	Desconto < 6% do salário, desconto ≥ 6%, diferentes salários
+6	Vale Alimentação (RF5)	Benefício com dias positivos/zero, sem impostos, diferentes valores diários
+7	INSS (RF6)	Cálculo nas faixas (7,5%, 9%, 12%, 14%), teto máximo, progressividade
+8	FGTS (RF7)	Cálculo (8% do salário bruto), não dedutível, diferentes salários
+9	IRRF (RF8)	Cálculo nas faixas (isento, 7,5%, 15%, 22,5%, 27,5%), dedução por dependentes, base de cálculo
+10	Salário Líquido (RF9)	Cálculo com/sem descontos, ordem dos cálculos, diferentes combinações
+11	Relatório (RF10)	Formatação, inclusão de campos obrigatórios, validação dos cálculos, diferentes cenários
