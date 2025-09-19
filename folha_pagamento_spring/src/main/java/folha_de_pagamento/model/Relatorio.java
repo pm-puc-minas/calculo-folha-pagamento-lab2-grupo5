@@ -59,24 +59,32 @@ public class Relatorio {
             if (funcionario.getGrauInsalubridade() == GrauInsalubridade.BAIXO) {
                 valorInsalubridade = salarioBruto.multiply(BigDecimal.valueOf(0.10)).setScale(2,
                         BigDecimal.ROUND_HALF_UP);
-                return salarioBruto.add(valorInsalubridade);
+
+                BigDecimal salarioTotal = salarioBruto.add(valorInsalubridade);
+                return salarioTotal;
             }
 
             if (funcionario.getGrauInsalubridade() == GrauInsalubridade.MEDIO) {
                 valorInsalubridade = salarioBruto.multiply(BigDecimal.valueOf(0.20)).setScale(2,
                         BigDecimal.ROUND_HALF_UP);
-                return salarioBruto.add(valorInsalubridade);
+
+                BigDecimal salarioTotal = salarioBruto.add(valorInsalubridade);
+                return salarioTotal;
             }
 
             if (funcionario.getGrauInsalubridade() == GrauInsalubridade.ALTO) {
                 valorInsalubridade = salarioBruto.multiply(BigDecimal.valueOf(0.40)).setScale(2,
                         BigDecimal.ROUND_HALF_UP);
-                return salarioBruto.add(valorInsalubridade);
+
+                BigDecimal salarioTotal = salarioBruto.add(valorInsalubridade);
+                return salarioTotal;
             }
 
         }
-        return null;
+        
+        return salarioBruto;
     }
 
-    public void gerarRelatorio(Funcionario funcionario) {}
+    public void gerarRelatorio(Funcionario funcionario) {
+    }
 }

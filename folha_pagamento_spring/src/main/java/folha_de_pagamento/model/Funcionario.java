@@ -22,6 +22,13 @@ public class Funcionario {
     public Funcionario() {
     }
 
+    // Constructor utilizado para testes
+    public Funcionario(BigDecimal salarioBruto, int horasTrabalhadasPorDia, int diasTrabalhadosNoMes) {
+        this.salarioBruto = salarioBruto;
+        this.horasTrabalhadasPorDia = horasTrabalhadasPorDia;
+        this.diasTrabalhadosNoMes = diasTrabalhadosNoMes;
+    }
+
     public Funcionario(String nome, LocalDate dataAdmissão, String cargo, BigDecimal salarioBruto,
             int horasTrabalhadasPorDia, int dependentes, boolean possuiPericulosidade, boolean possuiInsalubridade,
             GrauInsalubridade grauInsalubridade, BigDecimal valorValeTransporte,
