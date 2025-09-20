@@ -5,7 +5,9 @@ public class Gestor extends UsuarioDoSistema {
         super(login, senha);
     }
 
-    public Funcionario registrarFuncionario(Funcionario funcionario) { return funcionario; }
+    public Funcionario registrarFuncionario(Funcionario funcionario) { 
+        return funcionario; 
+    }
 
     public Relatorio gerarFolhaPgt(Funcionario funcionario) { return new Relatorio(); }
 

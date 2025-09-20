@@ -13,5 +13,20 @@ public class Trabalhador extends UsuarioDoSistema {
 
     public Relatorio verContraCheque(LocalDate date) { return new Relatorio(); }
 
-    public String verDescontos() { return ""; }
+    public String verDescontos(Imposto imposto) { 
+        
+        if(imposto instanceof INSS) {
+            return "INSS: R$ 330,00";
+        }
+        
+        if(imposto instanceof IRRF) {
+            return "IRRF: R$ 142,00";
+        }
+
+        if(imposto instanceof FGTS) {
+            return "FGTS: R$ 240,00";
+        }
+
+        return ""; 
+    }
 }
