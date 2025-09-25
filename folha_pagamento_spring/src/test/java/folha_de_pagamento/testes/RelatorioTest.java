@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class RelatorioTest {
 
-    BigDecimal salarioTotal = new BigDecimal("3000.00");
+    BigDecimal salarioTotal = new BigDecimal(3000);
 
     Funcionario funcionario = new Funcionario(salarioTotal, 8, 20);
 
@@ -22,17 +22,11 @@ public class RelatorioTest {
     }
 
     @Test
-    public void testCalcularPericulosidade(boolean periculosidade) {
-
-        if (periculosidade) {
+    public void testCalcularPericulosidade() {
+            BigDecimal salario = new BigDecimal(3900).setScale(1);
             Assertions.assertEquals(
-                    salarioTotal,
-                    new Relatorio().calcularPericulosidade(funcionario, periculosidade));
-        } else {
-            Assertions.assertEquals(
-                    salarioTotal,
-                    new Relatorio().calcularPericulosidade(funcionario, periculosidade));
-        }
+                    salario,
+                    new Relatorio().calcularPericulosidade(funcionario, true));
     }
 
     @Test

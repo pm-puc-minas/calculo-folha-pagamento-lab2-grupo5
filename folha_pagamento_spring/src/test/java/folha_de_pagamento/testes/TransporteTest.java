@@ -16,9 +16,10 @@ public class TransporteTest {
     BigDecimal valorTransporte = funcionario.getValorTransporte();
 
     @Test
-    public void testeCalcularVale(Funcionario funcionario) { 
+    public void testeCalcularVale() { 
         funcionario.setValorTransporte(180);
         funcionario.setSalarioBruto(2000);
+        
         Assertions.assertEquals(valorTransporte, transporte.calcularVale(funcionario));
      }
 }

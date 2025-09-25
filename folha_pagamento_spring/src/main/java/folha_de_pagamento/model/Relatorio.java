@@ -46,9 +46,8 @@ public class Relatorio {
 
         BigDecimal salarioBruto = funcionario.getSalarioBruto();
         if (possuiPericulosidade) {
-            BigDecimal valorPericulosidade = salarioBruto.multiply(BigDecimal.valueOf(0.30)).setScale(2,
-                    BigDecimal.ROUND_HALF_UP);
-            return salarioBruto.add(valorPericulosidade);
+            BigDecimal valorPericulosidade = salarioBruto.multiply(BigDecimal.valueOf(0.30)).setScale(1);
+            return (BigDecimal) salarioBruto.add(valorPericulosidade);
         }
         return null;
     }
