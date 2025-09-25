@@ -1,6 +1,7 @@
 package folha_de_pagamento.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import folha_de_pagamento.model.enums.GrauInsalubridade;
 
@@ -13,16 +14,18 @@ public class Relatorio {
     private Transporte valorTransporte;
     private Alimentacao valorAlimentacao;
 
-    public Relatorio() {
-    }
+    private LocalDate date;
+
+    public Relatorio() {}
 
     public Relatorio(INSS valorINSS, FGTS valorFGTS, IRRF valorIRRF, Transporte valorTransporte,
-            Alimentacao valorAlimentacao) {
+            Alimentacao valorAlimentacao, LocalDate date) {
         this.valorINSS = valorINSS;
         this.valorFGTS = valorFGTS;
         this.valorIRRF = valorIRRF;
         this.valorTransporte = valorTransporte;
         this.valorAlimentacao = valorAlimentacao;
+        this.date = date;
     }
 
     public BigDecimal calcularSalarioHora(Funcionario funcionario) {
