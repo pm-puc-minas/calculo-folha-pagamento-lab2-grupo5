@@ -4,20 +4,15 @@ import java.math.BigDecimal;
 
 public class Alimentacao extends Vale {
 
-    private double valorAlimentacao;
-
     public Alimentacao() {}
-
-    public Alimentacao(double valorAlimentacao) {
-        this.valorAlimentacao = valorAlimentacao;
-    }
     
     @Override
     public BigDecimal calcularVale(Funcionario funcionario) { 
         
+        BigDecimal valorAlimentacaoDiario = funcionario.getValorAlimentacao();
         int diasTrabalhadosNoMes = funcionario.getDiasTrabalhadosNoMes();
-        double valorVale = valorAlimentacao * diasTrabalhadosNoMes;
+        BigDecimal valorVale = valorAlimentacaoDiario.multiply(new BigDecimal(diasTrabalhadosNoMes));
         
-        return new BigDecimal(valorVale);
+        return valorVale;
      }
 }

@@ -12,13 +12,12 @@ import org.junit.jupiter.api.Assertions;
 public class AlimentacaoTest {
 
     BigDecimal salarioTotal = new BigDecimal("3000.00");
-    BigDecimal valorDescontado = salarioTotal.multiply(new BigDecimal(0.06));
-
-    Funcionario funcionario = new Funcionario(salarioTotal, 8, 20);
-    Alimentacao alimentacao = new Alimentacao(600);
+    BigDecimal valorAlimentacao = new BigDecimal(30);
+    Funcionario funcionario = new Funcionario(salarioTotal, 20, valorAlimentacao);
+    Alimentacao alimentacao = new Alimentacao();
     
     @Test
     public void testCalcularVale() {
-        Assertions.assertEquals(valorDescontado, alimentacao.calcularVale(funcionario));
+        Assertions.assertEquals(new BigDecimal(600), alimentacao.calcularVale(funcionario));
     }
 }

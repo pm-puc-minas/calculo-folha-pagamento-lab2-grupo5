@@ -16,23 +16,31 @@ public class Funcionario {
     private boolean possuiInsalubridade;
     private GrauInsalubridade grauInsalubridade;
     private BigDecimal valorValeTransporte;
-    private BigDecimal valorValeAlimentacaoDiario;
+    private BigDecimal valorValeAlimentacao;
     private int diasTrabalhadosNoMes;
 
     public Funcionario() {
     }
 
     // Constructor utilizado para testes
-    public Funcionario(BigDecimal salarioBruto, int horasTrabalhadasPorDia, int diasTrabalhadosNoMes) {
+    public Funcionario(BigDecimal salarioBruto, int horasTrabalhadasPorDia, 
+                        int diasTrabalhadosNoMes) {
         this.salarioBruto = salarioBruto;
         this.horasTrabalhadasPorDia = horasTrabalhadasPorDia;
         this.diasTrabalhadosNoMes = diasTrabalhadosNoMes;
     }
 
+    // Construtor para Alimentação
+    public Funcionario(BigDecimal salarioBruto, int diasTrabalhadosNoMes, BigDecimal valorALimentacao) {
+        this.salarioBruto = salarioBruto;
+        this.diasTrabalhadosNoMes = diasTrabalhadosNoMes;
+        this.valorValeAlimentacao = valorALimentacao;
+    }
+
     public Funcionario(String nome, LocalDate dataAdmissão, String cargo, BigDecimal salarioBruto,
             int horasTrabalhadasPorDia, int dependentes, boolean possuiPericulosidade, boolean possuiInsalubridade,
             GrauInsalubridade grauInsalubridade, BigDecimal valorValeTransporte,
-            BigDecimal valorValeAlimentacaoDiario, int diasTrabalhadosNoMes) {
+            BigDecimal valorValeAlimentacao, int diasTrabalhadosNoMes) {
         this.nome = nome;
         this.dataAdmissão = dataAdmissão;
         this.cargo = cargo;
@@ -43,7 +51,7 @@ public class Funcionario {
         this.possuiInsalubridade = possuiInsalubridade;
         this.grauInsalubridade = grauInsalubridade;
         this.valorValeTransporte = valorValeTransporte;
-        this.valorValeAlimentacaoDiario = valorValeAlimentacaoDiario;
+        this.valorValeAlimentacao = valorValeAlimentacao;
         this.diasTrabalhadosNoMes = diasTrabalhadosNoMes;
     }
 
@@ -55,11 +63,27 @@ public class Funcionario {
         return diasTrabalhadosNoMes;
     }
 
+    public void setSalarioBruto(int num) {
+        this.salarioBruto = new BigDecimal(num);
+    }
+    
     public BigDecimal getSalarioBruto() {
         return salarioBruto;
     }
 
     public GrauInsalubridade getGrauInsalubridade() {
         return grauInsalubridade;
+    }
+
+    public BigDecimal getValorAlimentacao() {
+        return valorValeAlimentacao;
+    }
+
+    public void setValorTransporte(int num) {
+        this.valorValeTransporte = new BigDecimal(num);
+    }
+
+    public BigDecimal getValorTransporte() {
+        return valorValeTransporte;
     }
 }
