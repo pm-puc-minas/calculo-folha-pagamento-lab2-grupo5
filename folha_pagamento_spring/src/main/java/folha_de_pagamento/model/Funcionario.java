@@ -47,23 +47,49 @@ public class Funcionario {
         this.diasTrabalhadosNoMes = diasTrabalhadosNoMes;
     }
 
-    public int getHorasTrabalhadasPorDia() {
+    // Getters
+    public BigDecimal getSalarioBruto() {
+        return salarioBruto;
+    }
+
+    public int getHorasTrabalhadasPorDia() { 
+
         return horasTrabalhadasPorDia;
     }
 
-    public int getDiasTrabalhadosNoMes() {
-        return diasTrabalhadosNoMes;
+    public int getDependentes() {
+        return dependentes;
     }
 
-    public BigDecimal getSalarioBruto() {
-        return salarioBruto;
+    public boolean getPossuiPericulosidade() {
+        return possuiPericulosidade;
     }
 
     public int getNumeroDependentes() {
         return dependentes;
     }    
 
+    public boolean getPossuiInsalubridade() {
+        return possuiInsalubridade;
+    }
+    
     public GrauInsalubridade getGrauInsalubridade() {
         return grauInsalubridade;
     }
+
+    public BigDecimal getValorValeTransporte() {
+        return valorValeTransporte;
+    }
+
+    public BigDecimal getValorValeAlimentacaoDiario() {
+        return valorValeAlimentacaoDiario;
+    }
+
+    public int getDiasTrabalhadosNoMes() {
+        return diasTrabalhadosNoMes;
+    }
+
+    
+
+
 }
