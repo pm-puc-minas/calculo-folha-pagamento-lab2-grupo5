@@ -59,6 +59,10 @@ public class Funcionario {
         return salarioBruto;
     }
 
+    public int getNumeroDependentes() {
+        return dependentes;
+    }    
+
     public GrauInsalubridade getGrauInsalubridade() {
         return grauInsalubridade;
     }
