@@ -65,6 +65,10 @@ public class Funcionario {
         return possuiPericulosidade;
     }
 
+    public int getNumeroDependentes() {
+        return dependentes;
+    }    
+
     public boolean getPossuiInsalubridade() {
         return possuiInsalubridade;
     }
