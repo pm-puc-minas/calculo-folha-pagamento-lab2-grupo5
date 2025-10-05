@@ -22,6 +22,11 @@ public class Funcionario {
     public Funcionario() {
     }
 
+    public Funcionario(String nome, BigDecimal salarioBruto) {
+        this.nome = nome;
+        this.salarioBruto = salarioBruto;
+    }
+
     // Constructor utilizado para testes
     public Funcionario(BigDecimal salarioBruto, int horasTrabalhadasPorDia, int diasTrabalhadosNoMes) {
         this.salarioBruto = salarioBruto;
@@ -52,7 +57,7 @@ public class Funcionario {
         return salarioBruto;
     }
 
-    public int getHorasTrabalhadasPorDia() { 
+    public int getHorasTrabalhadasPorDia() {
 
         return horasTrabalhadasPorDia;
     }
@@ -67,12 +72,12 @@ public class Funcionario {
 
     public int getNumeroDependentes() {
         return dependentes;
-    }    
+    }
 
     public boolean getPossuiInsalubridade() {
         return possuiInsalubridade;
     }
-    
+
     public GrauInsalubridade getGrauInsalubridade() {
         return grauInsalubridade;
     }
@@ -88,8 +93,4 @@ public class Funcionario {
     public int getDiasTrabalhadosNoMes() {
         return diasTrabalhadosNoMes;
     }
-
-    
-
-
 }

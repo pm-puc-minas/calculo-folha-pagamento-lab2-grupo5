@@ -17,17 +17,7 @@ public class UsuarioDoSistema {
         boolean loginExiste = !this.login.isEmpty();
         boolean senhaValida = this.senha.length() >= 6;
 
-        boolean loginValido = (!this.login.isEmpty() && !this.senha.isEmpty()) && senhaValida;
-
-        try {
-            if (loginExiste && senhaValida) {
-                System.out.println("Senha válida");
-            } else {
-                throw new Exception("Senha inválida, precisa ter no minimo 6 caracteres");
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao validar login: " + e.getMessage());
-        }
+        boolean loginValido = (loginExiste && !this.senha.isEmpty()) && senhaValida;
 
         if (!loginValido)
             return false;
@@ -36,6 +26,7 @@ public class UsuarioDoSistema {
 
     }
 
-    public void desconectar() {
+    public boolean desconectar() {
+        return false;
     }
 }

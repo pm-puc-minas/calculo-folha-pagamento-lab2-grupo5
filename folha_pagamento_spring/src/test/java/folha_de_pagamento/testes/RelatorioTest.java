@@ -17,16 +17,18 @@ public class RelatorioTest {
     @Test
     public void testCalcularSalarioHora() {
         Assertions.assertEquals(
-                salarioTotal,
+                new BigDecimal("18.75"),
                 new Relatorio().calcularSalarioHora(funcionario));
     }
 
     @Test
-    public void testCalcularPericulosidade(boolean periculosidade) {
+    public void testCalcularPericulosidade() {
+
+        boolean periculosidade = false;
 
         if (periculosidade) {
             Assertions.assertEquals(
-                    salarioTotal,
+                    new BigDecimal("3900.00"),
                     new Relatorio().calcularPericulosidade(funcionario, periculosidade));
         } else {
             Assertions.assertEquals(

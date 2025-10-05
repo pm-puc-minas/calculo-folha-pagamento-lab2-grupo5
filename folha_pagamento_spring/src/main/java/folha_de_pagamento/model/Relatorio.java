@@ -7,87 +7,89 @@ import folha_de_pagamento.model.enums.GrauInsalubridade;
 
 public class Relatorio {
 
-    private INSS valorINSS;
-    private FGTS valorFGTS;
-    private IRRF valorIRRF;
+	private INSS valorINSS;
+	private FGTS valorFGTS;
+	private IRRF valorIRRF;
 
-    private Transporte valorTransporte;
-    private Alimentacao valorAlimentacao;
+	private Transporte valorTransporte;
+	private Alimentacao valorAlimentacao;
 
-    private LocalDate date;
+	private LocalDate date;
 
-    public Relatorio() {}
+	public Relatorio() {
+	}
 
-    public Relatorio(INSS valorINSS, FGTS valorFGTS, IRRF valorIRRF, Transporte valorTransporte,
-            Alimentacao valorAlimentacao, LocalDate date) {
-        this.valorINSS = valorINSS;
-        this.valorFGTS = valorFGTS;
-        this.valorIRRF = valorIRRF;
-        this.valorTransporte = valorTransporte;
-        this.valorAlimentacao = valorAlimentacao;
-        this.date = date;
-    }
+	public Relatorio(INSS valorINSS, FGTS valorFGTS, IRRF valorIRRF, Transporte valorTransporte,
+			Alimentacao valorAlimentacao, LocalDate date) {
+		this.valorINSS = valorINSS;
+		this.valorFGTS = valorFGTS;
+		this.valorIRRF = valorIRRF;
+		this.valorTransporte = valorTransporte;
+		this.valorAlimentacao = valorAlimentacao;
+		this.date = date;
+	}
 
-    public BigDecimal calcularSalarioHora(Funcionario funcionario) {
+	public BigDecimal calcularSalarioHora(Funcionario funcionario) {
 
-        BigDecimal salarioBruto = funcionario.getSalarioBruto();
-        int horasTrabalhadasPorDia = funcionario.getHorasTrabalhadasPorDia();
-        int diasTrabalhadosNoMes = funcionario.getDiasTrabalhadosNoMes();
+		BigDecimal salarioBruto = funcionario.getSalarioBruto();
+		int horasTrabalhadasPorDia = funcionario.getHorasTrabalhadasPorDia();
+		int diasTrabalhadosNoMes = funcionario.getDiasTrabalhadosNoMes();
 
-        BigDecimal horasTrabalhadasNoMes = BigDecimal.valueOf(horasTrabalhadasPorDia)
-                .multiply(BigDecimal.valueOf(diasTrabalhadosNoMes));
+		BigDecimal horasTrabalhadasNoMes = BigDecimal.valueOf(horasTrabalhadasPorDia)
+				.multiply(BigDecimal.valueOf(diasTrabalhadosNoMes));
 
-        BigDecimal salarioHora = salarioBruto.divide(horasTrabalhadasNoMes, 2, BigDecimal.ROUND_HALF_UP);
-        return salarioHora;
+		BigDecimal salarioHora = salarioBruto.divide(horasTrabalhadasNoMes, 2, BigDecimal.ROUND_HALF_UP);
+		return salarioHora;
 
-    }
+	}
 
-    public BigDecimal calcularPericulosidade(Funcionario funcionario, boolean possuiPericulosidade) {
+	public BigDecimal calcularPericulosidade(Funcionario funcionario, boolean possuiPericulosidade) {
 
-        BigDecimal salarioBruto = funcionario.getSalarioBruto();
-        if (possuiPericulosidade) {
-            BigDecimal valorPericulosidade = salarioBruto.multiply(BigDecimal.valueOf(0.30)).setScale(2,
-                    BigDecimal.ROUND_HALF_UP);
-            return salarioBruto.add(valorPericulosidade);
-        }
-        return null;
-    }
+		BigDecimal salarioBruto = funcionario.getSalarioBruto();
+		if (possuiPericulosidade) {
+			BigDecimal valorPericulosidade = salarioBruto.multiply(BigDecimal.valueOf(0.30)).setScale(2,
+					BigDecimal.ROUND_HALF_UP);
+			return salarioBruto.add(valorPericulosidade);
+		}
+		return salarioBruto;
+	}
 
-    public BigDecimal calcularInsalubridade(Funcionario funcionario, boolean possuiInsalubridade) {
-        BigDecimal salarioBruto = funcionario.getSalarioBruto();
+	public BigDecimal calcularInsalubridade(Funcionario funcionario, boolean possuiInsalubridade) {
+		BigDecimal salarioBruto = funcionario.getSalarioBruto();
 
-        if (possuiInsalubridade) {
-            BigDecimal valorInsalubridade;
+		if (possuiInsalubridade) {
+			BigDecimal valorInsalubridade;
 
-            if (funcionario.getGrauInsalubridade() == GrauInsalubridade.BAIXO) {
-                valorInsalubridade = salarioBruto.multiply(BigDecimal.valueOf(0.10)).setScale(2,
-                        BigDecimal.ROUND_HALF_UP);
+			if (funcionario.getGrauInsalubridade() == GrauInsalubridade.BAIXO) {
+				valorInsalubridade = salarioBruto.multiply(BigDecimal.valueOf(0.10)).setScale(2,
+						BigDecimal.ROUND_HALF_UP);
 
-                BigDecimal salarioTotal = salarioBruto.add(valorInsalubridade);
-                return salarioTotal;
-            }
+				BigDecimal salarioTotal = salarioBruto.add(valorInsalubridade);
+				return salarioTotal;
+			}
 
-            if (funcionario.getGrauInsalubridade() == GrauInsalubridade.MEDIO) {
-                valorInsalubridade = salarioBruto.multiply(BigDecimal.valueOf(0.20)).setScale(2,
-                        BigDecimal.ROUND_HALF_UP);
+			if (funcionario.getGrauInsalubridade() == GrauInsalubridade.MEDIO) {
+				valorInsalubridade = salarioBruto.multiply(BigDecimal.valueOf(0.20)).setScale(2,
+						BigDecimal.ROUND_HALF_UP);
 
-                BigDecimal salarioTotal = salarioBruto.add(valorInsalubridade);
-                return salarioTotal;
-            }
+				BigDecimal salarioTotal = salarioBruto.add(valorInsalubridade);
+				return salarioTotal;
+			}
 
-            if (funcionario.getGrauInsalubridade() == GrauInsalubridade.ALTO) {
-                valorInsalubridade = salarioBruto.multiply(BigDecimal.valueOf(0.40)).setScale(2,
-                        BigDecimal.ROUND_HALF_UP);
+			if (funcionario.getGrauInsalubridade() == GrauInsalubridade.ALTO) {
+				valorInsalubridade = salarioBruto.multiply(BigDecimal.valueOf(0.40)).setScale(2,
+						BigDecimal.ROUND_HALF_UP);
 
-                BigDecimal salarioTotal = salarioBruto.add(valorInsalubridade);
-                return salarioTotal;
-            }
+				BigDecimal salarioTotal = salarioBruto.add(valorInsalubridade);
+				return salarioTotal;
+			}
 
-        }
-        
-        return salarioBruto;
-    }
+		}
 
-    public void gerarRelatorio(Funcionario funcionario) {
-    }
+		return salarioBruto;
+	}
+
+	public Relatorio gerarRelatorio(Funcionario funcionario) {
+		return new Relatorio();
+	}
 }
