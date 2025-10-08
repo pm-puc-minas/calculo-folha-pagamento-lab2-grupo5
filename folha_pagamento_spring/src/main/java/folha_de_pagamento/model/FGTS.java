@@ -7,7 +7,7 @@ public class FGTS extends Imposto {
     public boolean dedutivel() {
         return true;
     }
-    private BigDecimal aliquotaFGTS = new BigDecimal("0.08");
+    private static final BigDecimal aliquotaFGTS = new BigDecimal("0.08");
     
     @Override
     public BigDecimal calcularImposto(Funcionario funcionario) {

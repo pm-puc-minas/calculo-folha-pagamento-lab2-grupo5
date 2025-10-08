@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Gestor extends UsuarioDoSistema {
 
     ArrayList<Funcionario> funcionarios = new ArrayList<>();
+    ArrayList<Relatorio> relatorios = new ArrayList<>();
 
     public Gestor(String login, String senha) {
         super(login, senha);
@@ -15,5 +16,9 @@ public class Gestor extends UsuarioDoSistema {
     }
 
     public Relatorio gerarFolhaPgt(Funcionario funcionario) { return new Relatorio(); }
+
+    public void gerarRelatorio(Relatorio relatorio) {
+		relatorios.add(relatorio);
+	}
 
 }

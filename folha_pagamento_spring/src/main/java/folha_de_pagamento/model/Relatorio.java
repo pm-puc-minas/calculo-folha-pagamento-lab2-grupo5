@@ -2,6 +2,7 @@ package folha_de_pagamento.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import folha_de_pagamento.model.enums.GrauInsalubridade;
 
@@ -16,17 +17,28 @@ public class Relatorio {
 
 	private LocalDate date;
 
+	private ArrayList<Relatorio> relatorios = new ArrayList<>();
+
 	public Relatorio() {
 	}
 
 	public Relatorio(INSS valorINSS, FGTS valorFGTS, IRRF valorIRRF, Transporte valorTransporte,
-			Alimentacao valorAlimentacao, LocalDate date) {
+			Alimentacao valorAlimentacao, LocalDate date, ArrayList<Relatorio> relatorios) {
 		this.valorINSS = valorINSS;
 		this.valorFGTS = valorFGTS;
 		this.valorIRRF = valorIRRF;
 		this.valorTransporte = valorTransporte;
 		this.valorAlimentacao = valorAlimentacao;
 		this.date = date;
+		this.relatorios = relatorios;
+	}
+
+	public ArrayList<Relatorio> getRelatorios() {
+		return this.relatorios;
+	}
+
+	public LocalDate getDate() {
+		return this.date;
 	}
 
 	public BigDecimal calcularSalarioHora(Funcionario funcionario) {
@@ -87,9 +99,5 @@ public class Relatorio {
 		}
 
 		return salarioBruto;
-	}
-
-	public Relatorio gerarRelatorio(Funcionario funcionario) {
-		return new Relatorio();
 	}
 }

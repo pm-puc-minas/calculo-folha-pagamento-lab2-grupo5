@@ -36,8 +36,4 @@ public class RelatorioTest {
                     new Relatorio().calcularPericulosidade(funcionario, periculosidade));
         }
     }
-
-    @Test
-    public void testGerarRelatorio() {
-    }
 }
