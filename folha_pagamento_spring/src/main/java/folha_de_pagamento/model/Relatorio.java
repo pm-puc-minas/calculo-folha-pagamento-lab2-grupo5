@@ -34,6 +34,10 @@ public class Relatorio {
 		return this.date;
 	}
 
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
 	public BigDecimal calcularSalarioHora(Funcionario funcionario) {
 
 		BigDecimal salarioBruto = funcionario.getSalarioBruto();

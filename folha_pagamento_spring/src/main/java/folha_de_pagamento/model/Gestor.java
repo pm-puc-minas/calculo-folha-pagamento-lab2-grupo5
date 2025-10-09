@@ -7,6 +7,8 @@ public class Gestor extends UsuarioDoSistema {
     ArrayList<Funcionario> funcionarios = new ArrayList<>();
     ArrayList<Relatorio> relatorios = new ArrayList<>();
 
+    public Gestor() {}
+
     public Gestor(String login, String senha) {
         super(login, senha);
     }

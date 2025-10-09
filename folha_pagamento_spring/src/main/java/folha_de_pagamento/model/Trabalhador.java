@@ -2,6 +2,7 @@ package folha_de_pagamento.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Trabalhador extends UsuarioDoSistema {
     private Funcionario funcionario;
@@ -18,8 +19,8 @@ public class Trabalhador extends UsuarioDoSistema {
         this.funcionario = funcionario;
     }
 
-    public Relatorio verContraCheque(LocalDate date, Gestor relatorio) {
-        for(Relatorio r : relatorio.getRelatorios()) {
+    public Relatorio verContraCheque(LocalDate date, ArrayList<Relatorio> relatorio) {
+        for(Relatorio r : relatorio) {
             if(date == r.getDate()) {
                 return r;
             }
