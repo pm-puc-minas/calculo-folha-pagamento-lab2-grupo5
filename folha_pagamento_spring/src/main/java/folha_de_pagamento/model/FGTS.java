@@ -4,10 +4,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class FGTS extends Imposto {
+    private static final BigDecimal aliquotaFGTS = new BigDecimal("0.08");
+    
     public boolean dedutivel() {
         return true;
     }
-    private static final BigDecimal aliquotaFGTS = new BigDecimal("0.08");
     
     @Override
     public BigDecimal calcularImposto(Funcionario funcionario) {
