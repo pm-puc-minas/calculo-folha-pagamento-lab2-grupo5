@@ -20,7 +20,7 @@ public class Trabalhador extends UsuarioDoSistema {
 
     public Relatorio verContraCheque(LocalDate date, Relatorio relatorio) {
         for(Relatorio r : relatorio.getRelatorios()) {
-            if(r.getDate() == relatorio.getDate()) {
+            if(date == relatorio.getDate()) {
                 return r;
             }
         }
