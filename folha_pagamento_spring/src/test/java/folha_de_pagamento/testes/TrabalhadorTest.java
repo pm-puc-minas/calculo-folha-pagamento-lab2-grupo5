@@ -26,4 +26,9 @@ public class TrabalhadorTest {
     public void testVerDescontos() {
         assertEquals(new BigDecimal("263.33"), trabalhador.verDescontos(inss));
     }
+
+    @Test
+    public void testVerContraCheque() {
+        assertEquals(, fgts);
+    }
 }

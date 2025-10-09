@@ -17,8 +17,6 @@ public class Relatorio {
 
 	private LocalDate date;
 
-	private ArrayList<Relatorio> relatorios = new ArrayList<>();
-
 	public Relatorio() {
 	}
 
@@ -30,11 +28,6 @@ public class Relatorio {
 		this.valorTransporte = valorTransporte;
 		this.valorAlimentacao = valorAlimentacao;
 		this.date = date;
-		this.relatorios = relatorios;
-	}
-
-	public ArrayList<Relatorio> getRelatorios() {
-		return this.relatorios;
 	}
 
 	public LocalDate getDate() {

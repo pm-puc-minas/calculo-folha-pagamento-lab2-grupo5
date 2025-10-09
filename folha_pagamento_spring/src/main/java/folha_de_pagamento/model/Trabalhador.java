@@ -18,9 +18,9 @@ public class Trabalhador extends UsuarioDoSistema {
         this.funcionario = funcionario;
     }
 
-    public Relatorio verContraCheque(LocalDate date, Relatorio relatorio) {
+    public Relatorio verContraCheque(LocalDate date, Gestor relatorio) {
         for(Relatorio r : relatorio.getRelatorios()) {
-            if(date == relatorio.getDate()) {
+            if(date == r.getDate()) {
                 return r;
             }
         }

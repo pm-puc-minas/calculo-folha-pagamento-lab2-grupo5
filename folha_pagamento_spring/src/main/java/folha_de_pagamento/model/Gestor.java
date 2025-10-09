@@ -11,6 +11,10 @@ public class Gestor extends UsuarioDoSistema {
         super(login, senha);
     }
 
+    public ArrayList<Relatorio> getRelatorios() {
+        return this.relatorios;
+    }
+
     public void registrarFuncionario(Funcionario funcionario) { 
         funcionarios.add(funcionario);
     }
@@ -20,5 +24,6 @@ public class Gestor extends UsuarioDoSistema {
     public void gerarRelatorio(Relatorio relatorio) {
 		relatorios.add(relatorio);
 	}
+
 
 }
