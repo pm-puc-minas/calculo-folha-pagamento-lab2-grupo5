@@ -15,7 +15,7 @@ public class Transporte extends Vale {
      @Override
      public BigDecimal calcularVale(Funcionario funcionario) { 
           BigDecimal salarioBruto = funcionario.getSalarioBruto();
-          BigDecimal valorCalculado = salarioBruto.multiply(new BigDecimal(0.06));
+          BigDecimal valorCalculado = salarioBruto.multiply(new BigDecimal("0.06"));
           BigDecimal valorTransporte = new BigDecimal(this.valorTransporte);
 
           if(valorCalculado.compareTo(valorTransporte) > 0) return valorTransporte;

@@ -1,24 +1,27 @@
 package folha_de_pagamento.testes;
 
-import folha_de_pagamento.model.Funcionario;
 import folha_de_pagamento.model.Alimentacao;
+import folha_de_pagamento.model.Funcionario;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 import java.math.BigDecimal;
 
-import org.junit.jupiter.api.Assertions;
-
 public class AlimentacaoTest {
 
-    BigDecimal salarioTotal = new BigDecimal("3000.00");
-    BigDecimal valorDescontado = salarioTotal.multiply(new BigDecimal(0.06));
-
-    Funcionario funcionario = new Funcionario(salarioTotal, 8, 20);
-    Alimentacao alimentacao = new Alimentacao(600);
-    
     @Test
     public void testCalcularVale() {
-        Assertions.assertEquals(valorDescontado, alimentacao.calcularVale(funcionario));
+        BigDecimal salario = new BigDecimal("3000.00");
+        int dias = 20;
+        double valorDia = 30.0;
+
+        Funcionario funcionario = new Funcionario(salario, 8, dias);
+        Alimentacao beneficio = new Alimentacao(valorDia);
+
+        BigDecimal esperado = BigDecimal.valueOf(valorDia).multiply(BigDecimal.valueOf(dias));
+        BigDecimal calculado = beneficio.calcularVale(funcionario);
+
+        Assertions.assertEquals(0, esperado.compareTo(calculado));
     }
 }
