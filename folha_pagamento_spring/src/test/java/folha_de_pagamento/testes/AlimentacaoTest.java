@@ -1,7 +1,7 @@
 package folha_de_pagamento.testes;
 
-import folha_de_pagamento.model.Alimentacao;
-import folha_de_pagamento.model.Funcionario;
+import folha_de_pagamento.model.user.Funcionario;
+import folha_de_pagamento.model.vale.Alimentacao;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;

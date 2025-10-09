@@ -1,4 +1,4 @@
-package folha_de_pagamento.model;
+package folha_de_pagamento.model.user;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

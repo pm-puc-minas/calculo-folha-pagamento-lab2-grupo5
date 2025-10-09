@@ -1,6 +1,8 @@
-package folha_de_pagamento.model;
+package folha_de_pagamento.model.vale;
 
 import java.math.BigDecimal;
+
+import folha_de_pagamento.model.user.Funcionario;
 
 public class Alimentacao extends Vale {
 

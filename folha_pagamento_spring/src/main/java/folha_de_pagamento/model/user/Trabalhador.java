@@ -1,14 +1,19 @@
-package folha_de_pagamento.model;
+package folha_de_pagamento.model.user;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import folha_de_pagamento.model.Relatorio;
+import folha_de_pagamento.model.imposto.FGTS;
+import folha_de_pagamento.model.imposto.INSS;
+import folha_de_pagamento.model.imposto.IRRF;
+import folha_de_pagamento.model.imposto.Imposto;
+
 public class Trabalhador extends UsuarioDoSistema {
     private Funcionario funcionario;
 
-    public Trabalhador() {
-    }
+    public Trabalhador() {}
 
     public Trabalhador(Funcionario funcionario) {
         this.funcionario = funcionario;

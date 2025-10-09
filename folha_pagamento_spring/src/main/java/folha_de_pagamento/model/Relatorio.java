@@ -2,31 +2,19 @@ package folha_de_pagamento.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import folha_de_pagamento.model.enums.GrauInsalubridade;
+import folha_de_pagamento.model.user.Funcionario;
 
 public class Relatorio {
 
-	private INSS valorINSS;
-	private FGTS valorFGTS;
-	private IRRF valorIRRF;
-
-	private Transporte valorTransporte;
-	private Alimentacao valorAlimentacao;
 
 	private LocalDate date;
 
 	public Relatorio() {
 	}
 
-	public Relatorio(INSS valorINSS, FGTS valorFGTS, IRRF valorIRRF, Transporte valorTransporte,
-			Alimentacao valorAlimentacao, LocalDate date, ArrayList<Relatorio> relatorios) {
-		this.valorINSS = valorINSS;
-		this.valorFGTS = valorFGTS;
-		this.valorIRRF = valorIRRF;
-		this.valorTransporte = valorTransporte;
-		this.valorAlimentacao = valorAlimentacao;
+	public Relatorio(LocalDate date) {
 		this.date = date;
 	}
 

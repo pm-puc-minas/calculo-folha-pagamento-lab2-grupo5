@@ -1,10 +1,11 @@
 package folha_de_pagamento.testes;
 
-import folha_de_pagamento.model.Funcionario;
-
 import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
+
+import folha_de_pagamento.model.user.Funcionario;
+
 import org.junit.jupiter.api.Assertions;
 
 public class FuncionarioTest {

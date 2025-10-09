@@ -1,7 +1,7 @@
 package folha_de_pagamento.testes;
 
-import folha_de_pagamento.model.IRRF;
-import folha_de_pagamento.model.Funcionario;
+import folha_de_pagamento.model.imposto.IRRF;
+import folha_de_pagamento.model.user.Funcionario;
 
 import java.math.BigDecimal;
 

@@ -1,13 +1,13 @@
 package folha_de_pagamento.testes;
 
-import folha_de_pagamento.model.FGTS;
-import folha_de_pagamento.model.Funcionario;
-import folha_de_pagamento.model.Gestor;
-import folha_de_pagamento.model.INSS;
-import folha_de_pagamento.model.IRRF;
-import folha_de_pagamento.model.Imposto;
-import folha_de_pagamento.model.Trabalhador;
+import folha_de_pagamento.model.user.Funcionario;
+import folha_de_pagamento.model.user.Gestor;
+import folha_de_pagamento.model.user.Trabalhador;
 import folha_de_pagamento.model.Relatorio;
+import folha_de_pagamento.model.imposto.FGTS;
+import folha_de_pagamento.model.imposto.INSS;
+import folha_de_pagamento.model.imposto.IRRF;
+import folha_de_pagamento.model.imposto.Imposto;
 
 import org.junit.jupiter.api.Test;
 

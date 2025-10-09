@@ -1,7 +1,9 @@
-package folha_de_pagamento.model;
+package folha_de_pagamento.model.imposto;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+
+import folha_de_pagamento.model.user.Funcionario;
 
 public class FGTS extends Imposto {
     private static final BigDecimal aliquotaFGTS = new BigDecimal("0.08");

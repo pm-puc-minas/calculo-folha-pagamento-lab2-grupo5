@@ -1,4 +1,4 @@
-package folha_de_pagamento.model;
+package folha_de_pagamento.model.user;
 
 public class UsuarioDoSistema {
     private String login;

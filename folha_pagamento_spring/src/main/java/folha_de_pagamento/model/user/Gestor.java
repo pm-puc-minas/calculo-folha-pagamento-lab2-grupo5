@@ -1,6 +1,8 @@
-package folha_de_pagamento.model;
+package folha_de_pagamento.model.user;
 
 import java.util.ArrayList;
+
+import folha_de_pagamento.model.Relatorio;
 
 public class Gestor extends UsuarioDoSistema {
 
