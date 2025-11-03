@@ -57,8 +57,11 @@ public class Funcionario {
         return salarioBruto;
     }
 
+    public String getNome() {
+        return nome;
+    }
+    
     public int getHorasTrabalhadasPorDia() {
-
         return horasTrabalhadasPorDia;
     }
 
