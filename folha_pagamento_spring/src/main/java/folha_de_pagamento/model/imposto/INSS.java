@@ -3,6 +3,7 @@ package folha_de_pagamento.model.imposto;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import folha_de_pagamento.model.user.Funcionario;
+import folha_de_pagamento.model.enums.FaixaINSS;
 
 public class INSS extends Imposto {
 

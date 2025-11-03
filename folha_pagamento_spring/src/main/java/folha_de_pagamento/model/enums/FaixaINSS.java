@@ -1,4 +1,4 @@
-package folha_de_pagamento.model.imposto;
+package folha_de_pagamento.model.enums;
 
 import java.math.BigDecimal;
 
