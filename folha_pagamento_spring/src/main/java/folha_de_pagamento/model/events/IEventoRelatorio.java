@@ -3,6 +3,6 @@ package folha_de_pagamento.model.events;
 import folha_de_pagamento.model.Relatorio;
 import folha_de_pagamento.model.user.Funcionario;
 
-public class EventoFolha {
-    
+public interface IEventoRelatorio {
+    void onFolhaGerada(Funcionario funcionario, Relatorio relatorio);
 }
