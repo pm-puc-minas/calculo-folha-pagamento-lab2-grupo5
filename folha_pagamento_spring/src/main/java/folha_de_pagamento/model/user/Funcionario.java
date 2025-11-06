@@ -60,7 +60,12 @@ public class Funcionario {
     public String getNome() {
         return nome;
     }
-    
+    public LocalDate getDataAdmissão() {
+        return dataAdmissão;
+    }
+    public String getCargo() {
+        return cargo;
+    }
     public int getHorasTrabalhadasPorDia() {
         return horasTrabalhadasPorDia;
     }

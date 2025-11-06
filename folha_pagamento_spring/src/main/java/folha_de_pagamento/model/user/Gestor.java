@@ -1,6 +1,7 @@
 package folha_de_pagamento.model.user;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,21 +22,36 @@ public class Gestor extends UsuarioDoSistema {
         super(login, senha);
     }
 
-    public List<Relatorio> getRelatorios() {
+    public List<Relatorio> listarRelatorios() {
         return this.relatorios;
+    }
+    private void gerarRelatorio(Relatorio relatorio) {
+        relatorios.add(relatorio);
     }
 
     public void registrarFuncionario(Funcionario funcionario) { 
         funcionarios.add(funcionario);
+        this.notificacaoFuncionario(funcionario);
     }
 
-    public Relatorio gerarFolhaPgt(Funcionario funcionario) { 
-        return new Relatorio();
+    public Relatorio gerarRelatorio(Funcionario funcionario) { 
+        Relatorio relatorio = new Relatorio(LocalDate.now());
+        this.gerarRelatorio(relatorio);
+        this.notificacaoFolha(funcionario, relatorio);
+        return relatorio;
     }
 
-    public void gerarRelatorio(Relatorio relatorio) {
-		relatorios.add(relatorio);
-	}
+    private void notificacaoFolha(Funcionario funcionario, Relatorio relatorio) {
+        for (IEventoRelatorio listener : listenersFolha) {
+            listener.onFolhaGerada(funcionario, relatorio);
+        }
+    }
+
+    private void notificacaoFuncionario(Funcionario funcionario) {
+        for (IEventoFuncionario listener : listenersFuncionario) {
+            listener.onFuncionarioRegistrado(funcionario);
+        }
+    }
 
     /* Gestor não precisa lidar com os eventos de funcionario ou folha, 
         porém é capaz de triggar, "avisar" ou publica-los. Permitem que um
