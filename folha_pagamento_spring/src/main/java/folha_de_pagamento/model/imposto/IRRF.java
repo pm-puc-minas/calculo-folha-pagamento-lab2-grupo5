@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import folha_de_pagamento.model.user.Funcionario;
 import folha_de_pagamento.model.enums.TabelaIRRF;
 
+
 public class IRRF extends Imposto {
 
     private static final BigDecimal DEDUCAO_POR_DEPENDENTE = new BigDecimal("189.59");

@@ -1,7 +1,19 @@
 package folha_de_pagamento.model.user;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "usuarios")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class UsuarioDoSistema {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(unique = true)
     private String login;
+    
     private String senha;
 
     public UsuarioDoSistema() {
@@ -12,18 +24,39 @@ public class UsuarioDoSistema {
         this.senha = senha;
     }
 
-    public boolean fazerLogin() {
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public boolean fazerLogin() {
         boolean loginExiste = !this.login.isEmpty();
         boolean senhaValida = this.senha.length() >= 6;
-
         boolean loginValido = (loginExiste && !this.senha.isEmpty()) && senhaValida;
 
         if (!loginValido)
             return false;
 
         return true;
-
     }
 
     public boolean desconectar() {

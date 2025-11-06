@@ -1,6 +1,6 @@
 package folha_de_pagamento.testes;
 
-import folha_de_pagamento.model.FGTS;
+import folha_de_pagamento.model.imposto.FGTS;
 import folha_de_pagamento.model.user.Funcionario;
 
 import java.math.BigDecimal;
