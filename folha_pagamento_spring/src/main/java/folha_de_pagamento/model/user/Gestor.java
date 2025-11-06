@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import folha_de_pagamento.model.events.IEventoRelatorio;
-import folha_de_pagamento.model.events.IEventoFuncionario;
 
 import folha_de_pagamento.model.Relatorio;
+import folha_de_pagamento.model.events.IEventoFuncionario;
+import folha_de_pagamento.model.events.IEventoRelatorio;
 
 public class Gestor extends UsuarioDoSistema {
     
@@ -38,8 +38,9 @@ public class Gestor extends UsuarioDoSistema {
 	}
 
     /* Gestor não precisa lidar com os eventos de funcionario ou folha, 
-        porém é capaz de triggar, "avisar" ou publica-los. Eles são definidos 
-        por interfaces. */
+        porém é capaz de triggar, "avisar" ou publica-los. Permitem que um
+        objeto notifique outros sobre uma mudança de estado sem que o 
+        precise conhecer as classes concretas. */
 
     public void addFuncionarioListener(IEventoFuncionario listener) {
         listenersFuncionario.add(listener);
