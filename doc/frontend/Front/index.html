@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Folha de Pagamento - Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/main.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>PagPlus</h2>
+    <ul>
+      <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Início</a></li>
+      <li><a href="funcionarios.html"><i class="fa-solid fa-users"></i> Funcionários</a></li>
+      <li><a href="folha.html"><i class="fa-solid fa-file-invoice-dollar"></i> Folha</a></li>
+      <li><a href="relatorios.html"><i class="fa-solid fa-chart-line"></i> Relatórios</a></li>
+      <li><a href="#" class="logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+
+    </ul>
+  </aside>
+  <main class="content">
+    <header>
+      <h1>Bem-vindo ao Sistema de Folha de Pagamento PagPlus</h1>
+      <p>Selecione uma opção no menu lateral para começar.</p>
+    </header>
+    <section class="cards">
+  <div class="card" onclick="navegarSuave('funcionarios.html')">
+    <i class="fa-solid fa-users"></i>
+    <h3>Funcionários</h3>
+    <p>Gerencie o cadastro de colaboradores.</p>
+  </div>
+  <div class="card" onclick="navegarSuave('folha.html')">
+    <i class="fa-solid fa-file-invoice-dollar"></i>
+    <h3>Folha</h3>
+    <p>Calcule e visualize folhas de pagamento.</p>
+  </div>
+  <div class="card" onclick="navegarSuave('relatorios.html')">
+    <i class="fa-solid fa-chart-line"></i>
+    <h3>Relatórios</h3>
+    <p>Veja logs e relatórios financeiros.</p>
+  </div>
+</section>
+
+
+  </main>
+</body>
+</html>

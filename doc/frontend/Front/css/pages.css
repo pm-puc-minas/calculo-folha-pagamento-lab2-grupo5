@@ -1,0 +1,14 @@
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin:20px 0}
+form input{padding:10px;border-radius:8px;border:1px solid #ccc;font-size:1em;transition:all 0.3s ease}
+form input:focus{border-color:#4a6cf7;outline:none}
+form button{background-color:#4a6cf7;color:white;border:none;padding:12px 0;border-radius:8px;font-weight:600;cursor:pointer;transition:all 0.3s ease}
+form button:hover{background-color:#3a5de0;transform:translateY(-2px)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05);margin-top:15px}
+th,td{padding:14px 18px;border-bottom:1px solid #eee;font-size:0.95em}
+th{background-color:#f0f3fa;color:#333;text-align:left;font-weight:600}
+td button{background-color:#f44336;color:white;border:none;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:0.9em;transition:background 0.3s}
+td button:hover{background-color:#d32f2f}
+button#gerarFolha{background-color:#4a6cf7;color:white;border:none;padding:10px 18px;border-radius:8px;cursor:pointer;font-weight:600;transition:all 0.3s;margin-bottom:20px}
+button#gerarFolha:hover{background-color:#3a5de0;transform:translateY(-2px)}
+#relatorioContainer .card{text-align:center;padding:25px;margin-top:20px;background:#fff;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);transition:all 0.3s}
+#relatorioContainer .card:hover{transform:translateY(-4px)}
