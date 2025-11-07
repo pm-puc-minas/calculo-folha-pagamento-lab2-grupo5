@@ -14,6 +14,7 @@ import jakarta.persistence.*;
 public class Funcionario {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private LocalDate dataAdmissao;
@@ -23,6 +24,7 @@ public class Funcionario {
     private int dependentes;
     private boolean possuiPericulosidade;
     private boolean possuiInsalubridade;
+    @Enumerated(EnumType.STRING)
     private GrauInsalubridade grauInsalubridade;
     private BigDecimal valorValeTransporte;
     private BigDecimal valorValeAlimentacaoDiario;
