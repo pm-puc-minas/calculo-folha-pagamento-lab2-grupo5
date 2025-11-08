@@ -31,8 +31,8 @@ public class GestorService {
         Gestor gestor = gestorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Gestor não encontrado com id: " + id));
 
-        gestor.setNome(gestorDetails.getNome());
-        gestor.setEmail(gestorDetails.getEmail());
+        gestor.setLogin(gestorDetails.getLogin());
+        gestor.setSenha(gestorDetails.getSenha());
         gestor.setDepartamento(gestorDetails.getDepartamento());
 
         return gestorRepository.save(gestor);
