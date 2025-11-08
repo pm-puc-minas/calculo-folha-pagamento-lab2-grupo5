@@ -13,6 +13,14 @@ public class Alimentacao extends Vale {
     public Alimentacao(double valorAlimentacao) {
         this.valorAlimentacao = valorAlimentacao;
     }
+
+    public double getValorAlimentacao() {
+        return valorAlimentacao;
+    }
+
+    public void setValorAlimentacao(double valorAlimentacao) {
+        this.valorAlimentacao = valorAlimentacao;
+    }
     
     @Override
     public BigDecimal calcularVale(Funcionario funcionario) { 

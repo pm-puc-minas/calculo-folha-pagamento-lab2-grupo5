@@ -16,11 +16,6 @@ public class FuncionarioController {
     @Autowired
     private FuncionarioService funcionarioService;
 
-    @PostMapping
-    public Funcionario adicionarFuncionario(@RequestBody Funcionario funcionario) {
-        return funcionarioService.adicionarFuncionario(funcionario);
-    }
-
     @GetMapping
     public List<Funcionario> obterTodosFuncionarios() {
         return funcionarioService.obterTodosFuncionarios();
@@ -47,5 +42,15 @@ public class FuncionarioController {
     public ResponseEntity<Void> deletarFuncionario(@PathVariable Long id) {
         funcionarioService.deletarFuncionario(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/cadastrar")
+    public ResponseEntity<Funcionario> cadastrarFuncionario(@RequestBody Funcionario funcionario) {
+        try {
+            Funcionario novoFuncionario = funcionarioService.adicionarFuncionario(funcionario);
+            return ResponseEntity.ok(novoFuncionario);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

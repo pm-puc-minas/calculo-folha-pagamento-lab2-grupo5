@@ -4,6 +4,8 @@ package folha_de_pagamento.testes;
 import folha_de_pagamento.model.user.Funcionario;
 import folha_de_pagamento.model.user.Gestor;
 import folha_de_pagamento.repository.FuncionarioRepository;
+import folha_de_pagamento.services.FuncionarioService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

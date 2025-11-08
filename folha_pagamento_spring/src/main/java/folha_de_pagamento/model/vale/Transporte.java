@@ -13,6 +13,14 @@ public class Transporte extends Vale {
      public Transporte(double valorTransporte) {
           this.valorTransporte = valorTransporte;
      }
+
+     public double getValorTransporte() {
+          return valorTransporte;
+     }
+
+     public void setValorTransporte(double valorTransporte) {
+          this.valorTransporte = valorTransporte;
+     }
     
      @Override
      public BigDecimal calcularVale(Funcionario funcionario) { 

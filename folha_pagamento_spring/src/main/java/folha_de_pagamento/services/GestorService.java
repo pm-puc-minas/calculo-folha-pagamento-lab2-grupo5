@@ -1,19 +1,24 @@
 package folha_de_pagamento.services;
 
+import folha_de_pagamento.model.user.Funcionario;
 import folha_de_pagamento.model.user.Gestor;
+import folha_de_pagamento.repository.FuncionarioRepository;
 import folha_de_pagamento.repository.GestorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GestorService {
 
     @Autowired
     private GestorRepository gestorRepository;
+
+    private FuncionarioRepository funcionarios;
 
     public Gestor adicionarGestor(Gestor gestor) {
         return gestorRepository.save(gestor);

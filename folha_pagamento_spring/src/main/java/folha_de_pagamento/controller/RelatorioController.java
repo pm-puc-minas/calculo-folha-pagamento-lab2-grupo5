@@ -16,11 +16,6 @@ public class RelatorioController {
     @Autowired
     private RelatorioService relatorioService;
 
-    @PostMapping
-    public Relatorio adicionarRelatorio(@RequestBody Relatorio relatorio) {
-        return relatorioService.adicionarRelatorio(relatorio);
-    }
-
     @GetMapping
     public List<Relatorio> obterTodosRelatorios() {
         return relatorioService.obterTodosRelatorios();
@@ -31,6 +26,16 @@ public class RelatorioController {
         Optional<Relatorio> relatorio = relatorioService.obterRelatorioPorId(id);
         return relatorio.map(ResponseEntity::ok)
                         .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/cadastrar")
+    public ResponseEntity<Relatorio> adicionarRelatorio(@RequestBody Relatorio relatorio) {
+        try {
+            Relatorio novoRelatorio = relatorioService.adicionarRelatorio(relatorio);
+            return ResponseEntity.ok(novoRelatorio);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/{id}")
