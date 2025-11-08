@@ -10,3 +10,21 @@
 *A classe Imposto abstrai o conceito de um cálculo de imposto, definindo um método calcularImposto sem fornecer uma implementação. A abstração esconde a complexidade dos cálculos específicos dentro de cada subclasse, garantindo o encasuplamento do método. (Quem utiliza as classes não precisa conhecer os detalhes de cada cálculo; basta invocar o método padrão calcularImposto).* 
 
 *Graças ao polimorfismo, classes diferentes como INSS, IRRF podem ser tratadas de maneira uniforme através da superclasse Imposto. Isso permite, processar uma lista de diferentes impostos e calcular seus valores em loop, sem a necessidade de verificar o tipo específico de cada um, apenas com o método calcularImposto, inclusive facilita o acoplamento de novos métodos de possiveis novas tributações.*
+
+## Banco de dados (MySQL via Docker)
+
+
+
+```powershell
+docker compose up -d
+```
+
+Conectar no DBeaver :
+- Host: `localhost`
+- Porta: `3306`
+- Database: `folha_pagamento`
+- Usuário: `admin`
+- Senha: `admin123`
+- Propriedades : `allowPublicKeyRetrieval=true`
+
+
