@@ -7,6 +7,10 @@ import java.util.List;
 
 import folha_de_pagamento.model.Relatorio;
 import folha_de_pagamento.model.enums.GrauInsalubridade;
+import folha_de_pagamento.model.imposto.FGTS;
+import folha_de_pagamento.model.imposto.INSS;
+import folha_de_pagamento.model.imposto.IRRF;
+import folha_de_pagamento.model.imposto.Imposto;
 import jakarta.persistence.*;
 
 @Entity

@@ -2,7 +2,7 @@ package folha_de_pagamento.testes;
 
 import folha_de_pagamento.model.user.Funcionario;
 import folha_de_pagamento.model.user.Gestor;
-import folha_de_pagamento.model.user.Trabalhador;
+import folha_de_pagamento.model.user.IFuncionario;
 import folha_de_pagamento.model.Relatorio;
 import folha_de_pagamento.model.imposto.FGTS;
 import folha_de_pagamento.model.imposto.INSS;
@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class TrabalhadorTest {
 
     Funcionario funcionario = new Funcionario("João", new java.math.BigDecimal("3000.00"));
-    Trabalhador trabalhador = new Trabalhador(funcionario);
+    IFuncionario trabalhador = new IFuncionario(funcionario);
     Relatorio relatorio = new Relatorio();
     Gestor gestor = new Gestor();
 

@@ -17,11 +17,6 @@ public class GestorController {
     @Autowired
     private GestorService gestorService;
 
-    @PostMapping
-    public Gestor adicionarGestor(@RequestBody Gestor gestor) {
-        return gestorService.adicionarGestor(gestor);
-    }
-
     @GetMapping
     public List<Gestor> obterTodosGestores() {
         return gestorService.obterTodosGestores();
@@ -29,9 +24,23 @@ public class GestorController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Gestor> obterGestorPorId(@PathVariable Long id) {
-        Optional<Gestor> gestor = gestorService.obterGestorPorId(id);
-        return gestor.map(ResponseEntity::ok)
-                     .orElseGet(() -> ResponseEntity.notFound().build());
+        try {
+            Optional<Gestor> gestor = gestorService.obterGestorPorId(id);
+                    return gestor.map(ResponseEntity::ok)
+                                .orElseGet(() -> ResponseEntity.notFound().build());
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PostMapping("/cadastrar")
+    public ResponseEntity<Gestor> adicionarGestor(@RequestBody Gestor gestor) {
+        try {
+            Gestor novoGestor = gestorService.adicionarGestor(gestor);
+            return ResponseEntity.ok(novoGestor);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/{id}")
@@ -49,4 +58,5 @@ public class GestorController {
         gestorService.deletarGestor(id);
         return ResponseEntity.noContent().build();
     }
+
 }
