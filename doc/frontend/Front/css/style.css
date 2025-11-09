@@ -1,0 +1,202 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  color: #333;
+  background: url("https://i.imgur.com/h3Ir8JT.png") center/cover no-repeat fixed;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #1e1e2f;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 20px;
+  box-shadow: 3px 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar h2 {
+  text-align: center;
+  font-size: 1.6em;
+  margin-bottom: 25px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin: 12px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background-color: #4a6cf7;
+  color: #fff;
+}
+
+.sidebar ul li a.logout {
+  margin-top: auto;
+  background-color: #f44336;
+  color: #fff;
+}
+
+.sidebar ul li a.logout:hover {
+  background-color: #d32f2f;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+  margin: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 1.9em;
+  color: #1e1e2f;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #666;
+}
+
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card i {
+  font-size: 2.2em;
+  color: #4a6cf7;
+  margin-bottom: 12px;
+}
+
+
+.login-body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: url("https://i.imgur.com/h3Ir8JT.png") center/cover no-repeat fixed;
+  overflow: hidden;
+}
+
+
+.login-body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 30, 47, 0.6); 
+  z-index: 0;
+}
+
+
+.login-container {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 15px;
+  width: 340px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.login-container h2 {
+  color: #1e1e2f;
+  margin-bottom: 20px;
+}
+
+.login-container input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+.login-container input:focus {
+  border-color: #4a6cf7;
+  outline: none;
+}
+
+.login-container button {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login-container button:hover {
+  background-color: #3a5de0;
+}
+
+#error-msg {
+  color: red;
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+
+.content {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.content.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
