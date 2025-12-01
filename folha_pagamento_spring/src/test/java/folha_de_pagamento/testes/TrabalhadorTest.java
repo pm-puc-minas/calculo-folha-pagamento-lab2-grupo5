@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class TrabalhadorTest {
 
     Funcionario funcionario = new Funcionario("João", new java.math.BigDecimal("3000.00"));
-    IFuncionario trabalhador = new IFuncionario(funcionario);
+    IFuncionario funcionario2 = (IFuncionario) (Object) new Funcionario("João", new java.math.BigDecimal("3000.00"));    
     Relatorio relatorio = new Relatorio();
     Gestor gestor = new Gestor();
 
@@ -31,7 +31,7 @@ public class TrabalhadorTest {
 
     @Test
     public void testVerDescontos() {
-        assertEquals(new BigDecimal("263.33"), trabalhador.verDescontos(inss));
+        assertEquals(new BigDecimal("263.33"), funcionario2.verDescontos(inss));
     }
 
     @Test
@@ -39,6 +39,6 @@ public class TrabalhadorTest {
         relatorio.setDate(dataContracheque);
         gestor.getRelatorios().add(relatorio);
 
-        assertEquals(relatorio, trabalhador.verContraCheque(dataContracheque, gestor.getRelatorios()));
+        assertEquals(relatorio, funcionario2.verContraCheque(dataContracheque, gestor.getRelatorios()));
     }
 }
