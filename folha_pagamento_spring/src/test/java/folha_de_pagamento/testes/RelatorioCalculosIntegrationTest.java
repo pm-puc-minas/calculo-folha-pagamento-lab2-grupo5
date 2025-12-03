@@ -2,36 +2,33 @@ package folha_de_pagamento.testes;
 
 import folha_de_pagamento.DemoApplication;
 import folha_de_pagamento.model.Relatorio;
+import folha_de_pagamento.model.enums.GrauInsalubridade;
 import folha_de_pagamento.model.user.Funcionario;
-import folha_de_pagamento.repository.FuncionarioRepository;
-import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = DemoApplication.class)
 class RelatorioCalculosIntegrationTest {
 
-    @Autowired
-    private FuncionarioRepository funcionarioRepository;
-
-    private Funcionario getFuncionarioOrSkip(Long idEsperado) {
-        Optional<Funcionario> opt = funcionarioRepository.findById(idEsperado);
-        Assumptions.assumeTrue(opt.isPresent(), "Funcionario id=" + idEsperado + " precisa existir na base (execute os INSERTs antes).");
-        return opt.get();
+    private Funcionario buildFuncionario(BigDecimal salarioBruto, int horasDia, int diasMes, GrauInsalubridade grau) {
+        Funcionario funcionario = new Funcionario();
+        funcionario.setSalarioBruto(salarioBruto);
+        funcionario.setHorasTrabalhadasPorDia(horasDia);
+        funcionario.setDiasTrabalhadosNoMes(diasMes);
+        funcionario.setGrauInsalubridade(grau);
+        return funcionario;
     }
 
     @Test
     @DisplayName("Calcular salário hora (Funcionario 100: 3000 / (8*22) = 17.05)")
     void calcularSalarioHora() {
-        Funcionario f = getFuncionarioOrSkip(100L);
+        Funcionario f = buildFuncionario(new BigDecimal("3000.00"), 8, 22, GrauInsalubridade.BAIXO);
         Relatorio r = new Relatorio(LocalDate.now());
         BigDecimal salarioHora = r.calcularSalarioHora(f);
         assertThat(salarioHora).isEqualByComparingTo("17.05");
@@ -40,7 +37,7 @@ class RelatorioCalculosIntegrationTest {
     @Test
     @DisplayName("Calcular periculosidade (Funcionario 101: 5200 + 30% = 6760)")
     void calcularPericulosidade() {
-        Funcionario f = getFuncionarioOrSkip(101L);
+        Funcionario f = buildFuncionario(new BigDecimal("5200.00"), 8, 22, GrauInsalubridade.BAIXO);
         Relatorio r = new Relatorio(LocalDate.now());
         BigDecimal total = r.calcularPericulosidade(f, true);
         assertThat(total).isEqualByComparingTo("6760.00");
@@ -49,7 +46,7 @@ class RelatorioCalculosIntegrationTest {
     @Test
     @DisplayName("Calcular insalubridade ALTO (Funcionario 102: salario + 40% se grau=ALTO)")
     void calcularInsalubridadeAlto() {
-        Funcionario f = getFuncionarioOrSkip(102L);
+        Funcionario f = buildFuncionario(new BigDecimal("4000.00"), 8, 22, GrauInsalubridade.ALTO);
         Relatorio r = new Relatorio(LocalDate.now());
         BigDecimal total = r.calcularInsalubridade(f, true);
         if (f.getGrauInsalubridade() == folha_de_pagamento.model.enums.GrauInsalubridade.ALTO) {
@@ -70,7 +67,7 @@ class RelatorioCalculosIntegrationTest {
     @Test
     @DisplayName("Sem periculosidade mantém salário bruto")
     void semPericulosidade() {
-        Funcionario f = getFuncionarioOrSkip(100L);
+        Funcionario f = buildFuncionario(new BigDecimal("3000.00"), 8, 22, GrauInsalubridade.BAIXO);
         Relatorio r = new Relatorio(LocalDate.now());
         BigDecimal total = r.calcularPericulosidade(f, false);
         assertThat(total).isEqualByComparingTo(f.getSalarioBruto());
@@ -79,7 +76,7 @@ class RelatorioCalculosIntegrationTest {
     @Test
     @DisplayName("Sem insalubridade mantém salário bruto")
     void semInsalubridade() {
-        Funcionario f = getFuncionarioOrSkip(100L);
+        Funcionario f = buildFuncionario(new BigDecimal("3000.00"), 8, 22, GrauInsalubridade.BAIXO);
         Relatorio r = new Relatorio(LocalDate.now());
         BigDecimal total = r.calcularInsalubridade(f, false);
         assertThat(total).isEqualByComparingTo(f.getSalarioBruto());
