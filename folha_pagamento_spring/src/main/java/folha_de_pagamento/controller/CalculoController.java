@@ -4,6 +4,7 @@ import folha_de_pagamento.model.Relatorio;
 import folha_de_pagamento.model.imposto.FGTS;
 import folha_de_pagamento.model.imposto.INSS;
 import folha_de_pagamento.model.imposto.IRRF;
+import folha_de_pagamento.model.vale.Transporte;
 import folha_de_pagamento.model.user.Funcionario;
 import folha_de_pagamento.repository.FuncionarioRepository;
 import org.springframework.http.ResponseEntity;
@@ -86,6 +87,11 @@ public class CalculoController {
         BigDecimal valorInss = inss.calcularImposto(f);
         BigDecimal valorIrrf = irrf.calcularImposto(f);
         BigDecimal valorFgts = fgts.calcularImposto(f);
+        
+        // Calcular vale transporte (até 6% do salário)
+        double valorVTMensal = f.getValorValeTransporte().doubleValue() * f.getDiasTrabalhadosNoMes();
+        Transporte transporte = new Transporte(valorVTMensal);
+        BigDecimal valorValeTransporte = transporte.calcularVale(f);
 
         BigDecimal salarioBaseComAdicionais = Stream.of(
                 salarioBase,
@@ -96,7 +102,10 @@ public class CalculoController {
         .max(Comparator.naturalOrder())
         .orElse(salarioBase);
 
-        BigDecimal salarioLiquidoEstimado = salarioBaseComAdicionais.subtract(valorInss).subtract(valorIrrf);
+        BigDecimal salarioLiquidoEstimado = salarioBaseComAdicionais
+                .subtract(valorInss)
+                .subtract(valorIrrf)
+                .subtract(valorValeTransporte);
 
         return ResponseEntity.ok(Map.of(
                 "funcionarioId", id,
@@ -106,6 +115,7 @@ public class CalculoController {
                 "inss", valorInss,
                 "irrf", valorIrrf,
                 "fgts", valorFgts,
+                "valeTransporte", valorValeTransporte,
                 "salarioLiquidoEstimado", salarioLiquidoEstimado
         ));
     }

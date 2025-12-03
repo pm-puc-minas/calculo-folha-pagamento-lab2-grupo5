@@ -23,12 +23,14 @@
     </ul>
   </aside>
   <main class="content">
-    <h1>Folha de Pagamento</h1>
-    <button id="gerarFolha">Gerar Folha</button>
-    <table id="tabelaFolha">
-      <thead><tr><th>Funcionário</th><th>Salário Base</th><th>INSS (11%)</th><th>IRRF (7.5%)</th><th>Salário Líquido</th></tr></thead>
-      <tbody></tbody>
-    </table>
+    <div class="page-header">
+      <div>
+        <h1><i class="fa-solid fa-file-invoice-dollar"></i> Folha de Pagamento</h1>
+        <p>Visualize o detalhamento completo dos cálculos de pagamento</p>
+      </div>
+      <button id="gerarFolha" class="btn-primary"><i class="fa-solid fa-calculator"></i> Gerar Folha</button>
+    </div>
+    <div id="folhaContainer"></div>
   </main>
 </body>
 </html>

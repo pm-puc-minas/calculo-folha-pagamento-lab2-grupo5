@@ -24,12 +24,109 @@
   </aside>
   <main class="content">
     <h1>Cadastro de Funcionários</h1>
-    <form id="formFuncionario" class="form-grid">
-      <input type="text" id="nome" placeholder="Nome" required>
-      <input type="text" id="cargo" placeholder="Cargo" required>
-      <input type="number" id="salario" placeholder="Salário" required>
-      <button type="submit">Adicionar</button>
-    </form>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+      <button id="btnNovo" class="btn-primary">
+        <i class="fa-solid fa-plus"></i> Novo Funcionário
+      </button>
+    </div>
+
+    <!-- Modal de Cadastro -->
+    <div id="modalCadastro" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Cadastrar Funcionário</h2>
+        <form id="formFuncionario" class="form-detalhado">
+          <div class="form-group">
+            <label>Nome Completo *</label>
+            <input type="text" id="nome" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Cargo *</label>
+            <input type="text" id="cargo" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Data de Admissão</label>
+            <input type="date" id="dataAdmissao">
+          </div>
+          
+          <div class="form-group">
+            <label>Salário Bruto (R$) *</label>
+            <input type="number" id="salario" step="0.01" required>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Horas/Dia *</label>
+              <input type="number" id="horasDia" value="8" min="1" max="12" required>
+            </div>
+            
+            <div class="form-group">
+              <label>Dias/Mês *</label>
+              <input type="number" id="diasMes" value="22" min="1" max="31" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Dependentes</label>
+            <input type="number" id="dependentes" value="0" min="0">
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Vale Transporte (R$/dia)</label>
+              <input type="number" id="valeTransporte" step="0.01" value="0" min="0">
+            </div>
+            
+            <div class="form-group">
+              <label>Vale Alimentação (R$/dia)</label>
+              <input type="number" id="valeAlimentacao" step="0.01" value="0" min="0">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>
+              <input type="checkbox" id="periculosidade">
+              Possui Periculosidade (30%)
+            </label>
+          </div>
+          
+          <div class="form-group">
+            <label>
+              <input type="checkbox" id="insalubridade">
+              Possui Insalubridade
+            </label>
+          </div>
+          
+          <div class="form-group" id="grauInsalubridadeDiv" style="display: none;">
+            <label>Grau de Insalubridade</label>
+            <select id="grauInsalubridade">
+              <option value="">Selecione</option>
+              <option value="BAIXO">Baixo (10%)</option>
+              <option value="MEDIO">Médio (20%)</option>
+              <option value="ALTO">Alto (40%)</option>
+            </select>
+          </div>
+          
+          <div class="form-buttons">
+            <button type="submit" class="btn-primary">Cadastrar</button>
+            <button type="button" class="btn-secondary" onclick="fecharModal()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal de Detalhes -->
+    <div id="modalDetalhes" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close-detalhes">&times;</span>
+        <h2>Detalhes do Funcionário</h2>
+        <div id="detalhesConteudo"></div>
+      </div>
+    </div>
+
     <table id="tabelaFuncionarios">
       <thead><tr><th>Nome</th><th>Cargo</th><th>Salário</th><th>Ações</th></tr></thead>
       <tbody></tbody>
