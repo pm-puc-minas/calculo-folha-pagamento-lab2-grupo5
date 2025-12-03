@@ -4,11 +4,27 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import folha_de_pagamento.model.user.Funcionario;
 import folha_de_pagamento.model.enums.TabelaIRRF;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-
+@Entity
 public class IRRF extends Imposto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private static final BigDecimal DEDUCAO_POR_DEPENDENTE = new BigDecimal("189.59");
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public BigDecimal calcularImposto(Funcionario funcionario) {
