@@ -15,7 +15,7 @@ import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;   
 @Entity
 @Table(name = "funcionarios")
-public class Funcionario {
+public class Funcionario implements IFuncionario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -198,5 +198,25 @@ public class Funcionario {
 
     public void setRelatorios(List<Relatorio> relatorios) {
         this.relatorios = relatorios;
+    }
+
+    @Override
+    public BigDecimal verDescontos(Imposto imposto) {
+        return imposto.calcularImposto(this);
+    }
+
+    @Override
+    public Relatorio verContraCheque(LocalDate date, ArrayList<Relatorio> relatorios) {
+        if (date == null || relatorios == null) {
+            return null;
+        }
+
+        for (Relatorio relatorio : relatorios) {
+            if (relatorio != null && date.equals(relatorio.getDate())) {
+                return relatorio;
+            }
+        }
+
+        return null;
     }
 }

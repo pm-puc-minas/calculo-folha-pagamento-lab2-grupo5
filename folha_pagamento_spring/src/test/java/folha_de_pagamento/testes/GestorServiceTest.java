@@ -1,8 +1,8 @@
-/*/ src/test/java/com/example/demo/service/GestorServiceTest.java
 package folha_de_pagamento.testes;
 
 import folha_de_pagamento.model.user.Gestor;
 import folha_de_pagamento.repository.GestorRepository;
+import folha_de_pagamento.services.GestorService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,16 +24,18 @@ class GestorServiceTest {
     @Test
     void testCadastrarGestor() {
         Gestor gestor = new Gestor();
-        gestor.setNome("Novo Gestor");
-        gestor.setEmail("gestor@teste.com");
+        gestor.setLogin("gestor.teste");
+        gestor.setSenha("senha123");
+        gestor.setDepartamento("Financeiro");
 
         when(gestorRepository.save(any(Gestor.class))).thenReturn(gestor);
 
-        Gestor salvo = gestorService.cadastrarGestor(gestor);
+        Gestor salvo = gestorService.adicionarGestor(gestor);
 
         assertNotNull(salvo);
-        assertEquals("Novo Gestor", salvo.getNome());
-        verify(gestorRepository, times(1)).save(gestor);
+        assertEquals("gestor.teste", salvo.getLogin());
+        assertEquals("Financeiro", salvo.getDepartamento());
+        verify(gestorRepository, times(1)).save(any(Gestor.class));
     }
 }
-    */
+    

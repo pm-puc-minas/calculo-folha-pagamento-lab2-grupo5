@@ -22,11 +22,11 @@ class GestorPersistenciaTest {
 
     @Test
     void testSalvarGestor() {
-        Gestor gestor = new Gestor("admin", "senha123", "TI");
+        Gestor gestor = new Gestor("admin_gestor_test", "senha123", "TI");
         Gestor salvo = repository.save(gestor);
         
         assertThat(salvo.getId()).isNotNull();
-        assertThat(salvo.getLogin()).isEqualTo("admin");
+        assertThat(salvo.getLogin()).isEqualTo("admin_gestor_test");
     }
 
     @Test
