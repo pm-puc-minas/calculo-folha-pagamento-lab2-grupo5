@@ -12,7 +12,7 @@ import folha_de_pagamento.model.imposto.INSS;
 import folha_de_pagamento.model.imposto.IRRF;
 import folha_de_pagamento.model.imposto.Imposto;
 import jakarta.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;   
 @Entity
 @Table(name = "funcionarios")
 public class Funcionario {
@@ -36,9 +36,11 @@ public class Funcionario {
     
     @ManyToOne
     @JoinColumn(name = "gestor_id")
+    @JsonIgnore
     private Gestor gestor;
     
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Relatorio> relatorios = new ArrayList<>();
 
     public Funcionario() {

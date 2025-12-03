@@ -1,10 +1,18 @@
 package folha_de_pagamento.model.vale;
 
 import java.math.BigDecimal;
-
 import folha_de_pagamento.model.user.Funcionario;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Transporte extends Vale {
+
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Long id;
 
      private double valorTransporte;
 
@@ -12,6 +20,14 @@ public class Transporte extends Vale {
 
      public Transporte(double valorTransporte) {
           this.valorTransporte = valorTransporte;
+     }
+
+     public Long getId() {
+         return id;
+     }
+
+     public void setId(Long id) {
+         this.id = id;
      }
 
      public double getValorTransporte() {
