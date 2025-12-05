@@ -18,8 +18,6 @@ public class GestorService {
     @Autowired
     private GestorRepository gestorRepository;
 
-    private FuncionarioRepository funcionarios;
-
     public Gestor adicionarGestor(Gestor gestor) {
         return gestorRepository.save(gestor);
     }

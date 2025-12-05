@@ -1,36 +1,92 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Folha de Pagamento</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/pages.css" />
-  <script defer src="js/main.js"></script>
-  <script defer src="js/folha.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
-  <aside class="sidebar">
-    <h2>PagPlus</h2>
-    <ul>
-      <li><a href="index.html"><i class="fa-solid fa-house"></i> Início</a></li>
-      <li><a href="funcionarios.html"><i class="fa-solid fa-users"></i> Funcionários</a></li>
-      <li><a href="folha.html" class="active"><i class="fa-solid fa-file-invoice-dollar"></i> Folha</a></li>
-      <li><a href="relatorios.html"><i class="fa-solid fa-chart-line"></i> Relatórios</a></li>
-     <li><a href="#" class="logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
-
-    </ul>
-  </aside>
-  <main class="content">
-    <div class="page-header">
-      <div>
-        <h1><i class="fa-solid fa-file-invoice-dollar"></i> Folha de Pagamento</h1>
-        <p>Visualize o detalhamento completo dos cálculos de pagamento</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Folha de Pagamento</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <script defer src="js/main.js"></script>
+    <script defer src="js/folha.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <h2>PagPlus</h2>
+      <ul>
+        <li>
+          <a href="index.html"><i class="fa-solid fa-house"></i> Início</a>
+        </li>
+        <li>
+          <a href="funcionarios.html"
+            ><i class="fa-solid fa-users"></i> Funcionários</a
+          >
+        </li>
+        <li>
+          <a href="folha.html" class="active"
+            ><i class="fa-solid fa-file-invoice-dollar"></i> Folha</a
+          >
+        </li>
+        <li>
+          <a href="relatorios.html"
+            ><i class="fa-solid fa-chart-line"></i> Relatórios</a
+          >
+        </li>
+        <li>
+          <a href="#" class="logout" onclick="logout()"
+            ><i class="fa-solid fa-right-from-bracket"></i> Sair</a
+          >
+        </li>
+      </ul>
+    </aside>
+    <main class="content">
+      <div class="page-header">
+        <div>
+          <h1>
+            <i class="fa-solid fa-file-invoice-dollar"></i> Folha de Pagamento
+          </h1>
+          <p>Visualize o detalhamento completo dos cálculos de pagamento</p>
+        </div>
+        <button id="gerarFolha" class="btn-primary">
+          <i class="fa-solid fa-calculator"></i> Gerar Folha
+        </button>
       </div>
-      <button id="gerarFolha" class="btn-primary"><i class="fa-solid fa-calculator"></i> Gerar Folha</button>
-    </div>
-    <div id="folhaContainer"></div>
-  </main>
-</body>
+      <div id="folhaContainer"></div>
+
+      <div id="modalFolha" class="modal hidden">
+        <div class="modal-content">
+          <span class="close" id="closeModalFolha">&times;</span>
+
+          <h2><i class="fa-solid fa-calculator"></i> Gerar Folha</h2>
+          <p>Confirme os dados abaixo para gerar a folha de pagamento.</p>
+
+          <label for="mes">Mês:</label>
+          <select id="mes">
+            <option>Janeiro</option>
+            <option>Fevereiro</option>
+            <option>Março</option>
+            <option>Abril</option>
+            <option>Maio</option>
+            <option>Junho</option>
+            <option>Julho</option>
+            <option>Agosto</option>
+            <option>Setembro</option>
+            <option>Outubro</option>
+            <option>Novembro</option>
+            <option>Dezembro</option>
+          </select>
+
+          <label for="ano">Ano:</label>
+          <input id="ano" type="number" value="2025" />
+
+          <button class="btn-primary" id="confirmarGerarFolha">
+            <i class="fa-solid fa-check"></i> Confirmar
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
