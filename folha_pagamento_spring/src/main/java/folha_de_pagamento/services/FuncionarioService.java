@@ -1,7 +1,10 @@
 package folha_de_pagamento.services;
 
 import folha_de_pagamento.model.user.Funcionario;
+import folha_de_pagamento.model.user.Role;
+import folha_de_pagamento.model.user.UsuarioDoSistema;
 import folha_de_pagamento.repository.FuncionarioRepository;
+import folha_de_pagamento.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +19,19 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     public Funcionario adicionarFuncionario(Funcionario funcionario) {
-        return funcionarioRepository.save(funcionario);
+        Funcionario salvo = funcionarioRepository.save(funcionario);
+        // criar usuário padrão vinculado ao funcionário
+        UsuarioDoSistema usuario = new UsuarioDoSistema();
+        usuario.setLogin(salvo.getNome());
+        usuario.setSenha("brasil2025");
+        usuario.setRole(Role.FUNCIONARIO);
+        usuario.setFuncionario(salvo);
+        usuarioRepository.save(usuario);
+        return salvo;
     }
 
     public List<Funcionario> obterTodosFuncionarios() {

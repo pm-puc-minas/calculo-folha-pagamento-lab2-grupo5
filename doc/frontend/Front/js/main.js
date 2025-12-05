@@ -11,7 +11,7 @@ function navegarSuave(url) {
 }
 
 function logout() {
-  localStorage.removeItem("auth");
+  sessionStorage.clear();
   const content = document.querySelector(".content");
   if (content) {
     content.classList.add("fade-out");

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PagPlus - Minha Folha</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/main.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const username = sessionStorage.getItem('username');
+      const role = sessionStorage.getItem('role');
+      if (!username || role !== 'FUNCIONARIO') {
+        window.location.href = 'login.html';
+        return;
+      }
+      const userNameEl = document.getElementById('userName');
+      if (userNameEl) userNameEl.textContent = username;
+    });
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>PagPlus</h2>
+    <ul>
+      <li><a href="dashboard-funcionario.html" class="active"><i class="fa-solid fa-house"></i> Início</a></li>
+      <li><a href="folha-funcionario.html"><i class="fa-solid fa-file-invoice-dollar"></i> Minha Folha</a></li>
+      <li><a href="relatorios-funcionario.html"><i class="fa-solid fa-chart-line"></i> Meus Relatórios</a></li>
+      <li><a href="#" class="logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+    </ul>
+  </aside>
+  <main class="content">
+    <header>
+      <h1>Bem-vindo(a), <span id="userName"></span></h1>
+      <p>Acesse suas informações de pagamento e relatórios.</p>
+    </header>
+
+    <section class="cards">
+      <div class="card" onclick="navegarSuave('folha-funcionario.html')">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <h3>Minha Folha</h3>
+        <p>Calcule e visualize sua folha de pagamento.</p>
+      </div>
+      <div class="card" onclick="navegarSuave('relatorios-funcionario.html')">
+        <i class="fa-solid fa-chart-line"></i>
+        <h3>Meus Relatórios</h3>
+        <p>Veja seu histórico de pagamentos.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

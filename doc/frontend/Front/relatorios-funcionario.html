@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meus Relatórios</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <script defer src="js/main.js"></script>
+  <script defer src="js/relatorios-funcionario.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>PagPlus</h2>
+    <ul>
+      <li><a href="dashboard-funcionario.html"><i class="fa-solid fa-house"></i> Início</a></li>
+      <li><a href="folha-funcionario.html"><i class="fa-solid fa-file-invoice-dollar"></i> Minha Folha</a></li>
+      <li><a href="relatorios-funcionario.html" class="active"><i class="fa-solid fa-chart-line"></i> Meus Relatórios</a></li>
+      <li><a href="#" class="logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+    </ul>
+  </aside>
+  <main class="content">
+    <div class="page-header">
+      <div>
+        <h1><i class="fa-solid fa-chart-pie"></i> Meus Relatórios</h1>
+        <p>Histórico dos seus pagamentos e informações financeiras</p>
+      </div>
+    </div>
+    <div id="relatorioContainer"></div>
+  </main>
+</body>
+</html>

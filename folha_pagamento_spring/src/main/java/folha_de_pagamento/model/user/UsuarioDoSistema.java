@@ -16,6 +16,14 @@ public class UsuarioDoSistema {
     
     private String senha;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private Role role = Role.FUNCIONARIO;
+
+    @OneToOne
+    @JoinColumn(name = "funcionario_id")
+    private Funcionario funcionario;
+
     public UsuarioDoSistema() {
     }
 
@@ -46,6 +54,22 @@ public class UsuarioDoSistema {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
     public boolean fazerLogin() {
