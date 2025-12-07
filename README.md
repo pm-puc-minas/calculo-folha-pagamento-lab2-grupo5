@@ -14,7 +14,6 @@
 ## Banco de dados (MySQL via Docker)
 
 
-
 ```powershell
 docker compose up -d
 ```
@@ -26,5 +25,61 @@ Conectar no DBeaver :
 - Usuário: `admin`
 - Senha: `admin123`
 - Propriedades : `allowPublicKeyRetrieval=true`
+
+## 🚀 Como Executar o Sistema
+
+### Pré-requisitos
+- Docker Desktop instalado e em execução
+- Java 17 ou superior
+- Node.js e npm instalados
+
+### 1️⃣ Iniciar o Banco de Dados
+
+```powershell
+docker-compose up -d
+```
+
+Aguarde alguns segundos para o MySQL inicializar completamente.
+
+### 2️⃣ Iniciar o Backend (Spring Boot)
+
+```powershell
+cd calculo-folha-pagamento-lab2-grupo5\folha_pagamento_spring
+.\mvnw.cmd spring-boot:run
+```
+
+O backend estará disponível em: `http://localhost:8080`
+
+### 3️⃣ Iniciar o Frontend
+
+```powershell
+cd calculo-folha-pagamento-lab2-grupo5\doc\frontend\Front
+npx serve -p 5500
+```
+
+O frontend estará disponível em: `http://localhost:5500`
+
+### 4️⃣ Acessar o Sistema
+
+Abra o navegador e acesse: `http://localhost:5500/login.html`
+
+**Credenciais de Teste:**
+
+**Administrador:**
+- Usuário: `admin`
+- Senha: `1234`
+- Acesso: Dashboard completo, gestão de funcionários, folha de pagamento e relatórios empresariais
+
+**Funcionário:**
+- Usuário: `joao`
+- Senha: `brasil2025`
+- Acesso: Dashboard pessoal, visualização da própria folha de pagamento e relatórios individuais
+
+### 📝 Notas Importantes
+
+- O sistema cria automaticamente um usuário para cada funcionário cadastrado
+- Senha padrão dos novos funcionários: `brasil2025`
+- Login do funcionário = Nome do funcionário cadastrado
+- O banco de dados persiste os dados entre execuções do Docker
 
 
