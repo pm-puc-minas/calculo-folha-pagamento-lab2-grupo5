@@ -71,7 +71,7 @@ Abra o navegador e acesse: `http://localhost:5500/login.html`
 - Acesso: Dashboard completo, gestão de funcionários, folha de pagamento e relatórios empresariais
 
 **Funcionário:**
-- Usuário: `joao`
+- Usuário: `marcelo`
 - Senha: `brasil2025`
 - Acesso: Dashboard pessoal, visualização da própria folha de pagamento e relatórios individuais
 
