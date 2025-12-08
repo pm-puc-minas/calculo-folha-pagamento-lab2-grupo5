@@ -29,6 +29,38 @@
       <button id="gerarFolha" class="btn-primary"><i class="fa-solid fa-calculator"></i> Gerar Minha Folha</button>
     </div>
     <div id="folhaContainer"></div>
+
+    <div id="modalFolha" class="modal hidden">
+      <div class="modal-content">
+        <span class="close" id="closeModalFolha">&times;</span>
+
+        <h2><i class="fa-solid fa-calculator"></i> Gerar Minha Folha</h2>
+        <p>Confirme os dados abaixo para gerar sua folha de pagamento.</p>
+
+        <label for="mes">Mês:</label>
+        <select id="mes">
+          <option>Janeiro</option>
+          <option>Fevereiro</option>
+          <option>Março</option>
+          <option>Abril</option>
+          <option>Maio</option>
+          <option>Junho</option>
+          <option>Julho</option>
+          <option>Agosto</option>
+          <option>Setembro</option>
+          <option>Outubro</option>
+          <option>Novembro</option>
+          <option>Dezembro</option>
+        </select>
+
+        <label for="ano">Ano:</label>
+        <input id="ano" type="number" value="2025" />
+
+        <button class="btn-primary" id="confirmarGerarFolha">
+          <i class="fa-solid fa-check"></i> Confirmar
+        </button>
+      </div>
+    </div>
   </main>
 </body>
 </html>

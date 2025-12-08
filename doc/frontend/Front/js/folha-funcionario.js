@@ -13,7 +13,35 @@ const container = document.getElementById('folhaContainer');
 const API_FUNC = 'http://localhost:8080/api/funcionarios';
 const API_CALC = 'http://localhost:8080/api/calculos/folha';
 
-document.getElementById('gerarFolha').addEventListener('click', async () => {
+document.getElementById('gerarFolha').addEventListener('click', () => {
+  document.getElementById('modalFolha').classList.remove('hidden');
+});
+
+document.getElementById('closeModalFolha').addEventListener('click', () => {
+  document.getElementById('modalFolha').classList.add('hidden');
+});
+
+document.getElementById('modalFolha').addEventListener('click', (e) => {
+  if (e.target.id === 'modalFolha') {
+    document.getElementById('modalFolha').classList.add('hidden');
+  }
+});
+
+document.getElementById('confirmarGerarFolha').addEventListener('click', () => {
+  const mes = document.getElementById('mes').value;
+  const ano = document.getElementById('ano').value;
+
+  if (!mes || !ano) {
+    alert('Selecione mês e ano antes de gerar a folha.');
+    return;
+  }
+
+  document.getElementById('modalFolha').classList.add('hidden');
+
+  gerarMinhaFolha(mes, ano);
+});
+
+async function gerarMinhaFolha(mes, ano) {
     container.innerHTML = '<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> Calculando sua folha de pagamento...</div>';
     
     try {
@@ -26,6 +54,9 @@ document.getElementById('gerarFolha').addEventListener('click', async () => {
         if (!respCalc.ok) throw new Error('Erro ao calcular folha');
         
         const dados = await respCalc.json();
+        
+        // Salvar relatório no banco
+        await salvarRelatorio(func, dados, mes, ano);
         
         const adicionalPericulosidade = dados.adicionalPericulosidade || 0;
         const adicionalInsalubridade = dados.adicionalInsalubridade || 0;
@@ -55,7 +86,7 @@ document.getElementById('gerarFolha').addEventListener('click', async () => {
             <div class="folha-header">
                 <div>
                     <h3><i class="fa-solid fa-user"></i> ${func.nome}</h3>
-                    <p class="cargo">${func.cargo}</p>
+                    <p class="cargo">${func.cargo} • ${mes}/${ano}</p>
                 </div>
                 <div class="salario-liquido">
                     <span class="label">Salário Líquido</span>
@@ -135,4 +166,71 @@ document.getElementById('gerarFolha').addEventListener('click', async () => {
     } catch (error) {
         container.innerHTML = `<div class="error-message"><i class="fa-solid fa-exclamation-triangle"></i> ${error.message}</div>`;
     }
-});
+}
+
+async function salvarRelatorio(func, dados, mes, ano) {
+    try {
+        const dataRelatorio = `${ano}-${String(mesParaNumero(mes)).padStart(2, '0')}-01`;
+        
+        // Buscar todos os relatórios do funcionário
+        const respRelatorios = await fetch('http://localhost:8080/api/relatorios');
+        if (respRelatorios.ok) {
+            const todosRelatorios = await respRelatorios.json();
+            const relatorioExistente = todosRelatorios.find(r => 
+                r.funcionario && 
+                r.funcionario.id == funcionarioId && 
+                r.date === dataRelatorio
+            );
+            
+            // Se já existe, atualiza ao invés de criar novo
+            if (relatorioExistente) {
+                await fetch(`http://localhost:8080/api/relatorios/${relatorioExistente.id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        funcionario: { id: funcionarioId },
+                        date: dataRelatorio,
+                        salarioBruto: dados.salarioBruto,
+                        valorInss: dados.inss,
+                        valorIrrf: dados.irrf,
+                        valorFgts: dados.fgts,
+                        valorValeTransporte: dados.valeTransporte || 0,
+                        valorValeAlimentacao: (func.valorValeAlimentacaoDiario || 0) * (func.diasTrabalhadosNoMes || 22),
+                        salarioLiquido: dados.salarioLiquidoEstimado
+                    })
+                });
+                return;
+            }
+        }
+        
+        // Se não existe, cria novo
+        const relatorio = {
+            funcionario: { id: funcionarioId },
+            date: dataRelatorio,
+            salarioBruto: dados.salarioBruto,
+            valorInss: dados.inss,
+            valorIrrf: dados.irrf,
+            valorFgts: dados.fgts,
+            valorValeTransporte: dados.valeTransporte || 0,
+            valorValeAlimentacao: (func.valorValeAlimentacaoDiario || 0) * (func.diasTrabalhadosNoMes || 22),
+            salarioLiquido: dados.salarioLiquidoEstimado
+        };
+        
+        await fetch('http://localhost:8080/api/relatorios/cadastrar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(relatorio)
+        });
+    } catch (error) {
+        console.error('Erro ao salvar relatório:', error);
+    }
+}
+
+function mesParaNumero(mes) {
+    const meses = {
+        'Janeiro': 1, 'Fevereiro': 2, 'Março': 3, 'Abril': 4,
+        'Maio': 5, 'Junho': 6, 'Julho': 7, 'Agosto': 8,
+        'Setembro': 9, 'Outubro': 10, 'Novembro': 11, 'Dezembro': 12
+    };
+    return meses[mes] || 1;
+}

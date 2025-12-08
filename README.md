@@ -1,6 +1,3 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=20461449&assignment_repo_type=AssignmentRepo)
-
-
 ***RF 6,7,8 - Calculo de Impostos***
 
 **Para desenvolvermos os requisitos Calcular Desconto de INSS RF6,  Calcular FGTS RF7 e Calcular Desconto de IRRF RF8, desenvolvemos uma classe abstrata Imposto para definir um contrato de cálculo que é implementado de forma específica pelas classes INSS, IRRF e FGTS, permitindo o cálculo polimórfico de diferentes tributos sobre a folha de pagamento do funcionários, e relatórios.**
@@ -26,7 +23,7 @@ Conectar no DBeaver :
 - Senha: `admin123`
 - Propriedades : `allowPublicKeyRetrieval=true`
 
-## 🚀 Como Executar o Sistema
+## Como Executar o Sistema
 
 ### Pré-requisitos
 - Docker Desktop instalado e em execução
