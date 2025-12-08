@@ -12,211 +12,224 @@ import folha_de_pagamento.model.imposto.INSS;
 import folha_de_pagamento.model.imposto.IRRF;
 import folha_de_pagamento.model.imposto.Imposto;
 import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;   
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "funcionarios")
 public class Funcionario implements IFuncionario {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nome;
-    private LocalDate dataAdmissao;
-    private String cargo;
-    private BigDecimal salarioBruto;
-    private int horasTrabalhadasPorDia;
-    private int dependentes;
-    private boolean possuiPericulosidade;
-    private boolean possuiInsalubridade;
-    @Enumerated(EnumType.STRING)
-    private GrauInsalubridade grauInsalubridade;
-    private BigDecimal valorValeTransporte;
-    private BigDecimal valorValeAlimentacaoDiario;
-    private int diasTrabalhadosNoMes;
-    
-    @ManyToOne
-    @JoinColumn(name = "gestor_id")
-    @JsonIgnore
-    private Gestor gestor;
-    
-    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Relatorio> relatorios = new ArrayList<>();
 
-    public Funcionario() {
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String nome;
+	private LocalDate dataAdmissao;
+	private String cargo;
+	private BigDecimal salarioBruto;
+	private int horasTrabalhadasPorDia;
+	private int dependentes;
+	private boolean possuiPericulosidade;
+	private boolean possuiInsalubridade;
+	@Enumerated(EnumType.STRING)
+	private GrauInsalubridade grauInsalubridade;
+	private BigDecimal valorValeTransporte;
+	private BigDecimal valorValeAlimentacaoDiario;
+	private int diasTrabalhadosNoMes;
 
-    public Funcionario(String nome, BigDecimal salarioBruto) {
-        this.nome = nome;
-        this.salarioBruto = salarioBruto;
-    }
+	@ManyToOne
+	@JoinColumn(name = "gestor_id")
+	@JsonIgnore
+	private Gestor gestor;
 
-    // Constructor utilizado para testes
-    public Funcionario(BigDecimal salarioBruto, int horasTrabalhadasPorDia, int diasTrabalhadosNoMes) {
-        this.salarioBruto = salarioBruto;
-        this.horasTrabalhadasPorDia = horasTrabalhadasPorDia;
-        this.diasTrabalhadosNoMes = diasTrabalhadosNoMes;
-    }
+	@OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Relatorio> relatorios = new ArrayList<>();
 
-    public Funcionario(String nome, LocalDate dataAdmissao, String cargo, BigDecimal salarioBruto,
-            int horasTrabalhadasPorDia, int dependentes, boolean possuiPericulosidade, boolean possuiInsalubridade,
-            GrauInsalubridade grauInsalubridade, BigDecimal valorValeTransporte,
-            BigDecimal valorValeAlimentacaoDiario, int diasTrabalhadosNoMes) {
-        this.nome = nome;
-        this.dataAdmissao = dataAdmissao;
-        this.cargo = cargo;
-        this.salarioBruto = salarioBruto;
-        this.horasTrabalhadasPorDia = horasTrabalhadasPorDia;
-        this.dependentes = dependentes;
-        this.possuiPericulosidade = possuiPericulosidade;
-        this.possuiInsalubridade = possuiInsalubridade;
-        this.grauInsalubridade = grauInsalubridade;
-        this.valorValeTransporte = valorValeTransporte;
-        this.valorValeAlimentacaoDiario = valorValeAlimentacaoDiario;
-        this.diasTrabalhadosNoMes = diasTrabalhadosNoMes;
-    }
+	@OneToOne(mappedBy = "funcionario", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@JsonIgnore
+	private UsuarioDoSistema usuarioDoSistema;
 
-    public Long getId() {
-        return id;
-    }
+	public Funcionario() {
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Funcionario(String nome, BigDecimal salarioBruto) {
+		this.nome = nome;
+		this.salarioBruto = salarioBruto;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	// Constructor utilizado para testes
+	public Funcionario(BigDecimal salarioBruto, int horasTrabalhadasPorDia, int diasTrabalhadosNoMes) {
+		this.salarioBruto = salarioBruto;
+		this.horasTrabalhadasPorDia = horasTrabalhadasPorDia;
+		this.diasTrabalhadosNoMes = diasTrabalhadosNoMes;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public Funcionario(String nome, LocalDate dataAdmissao, String cargo, BigDecimal salarioBruto,
+			int horasTrabalhadasPorDia, int dependentes, boolean possuiPericulosidade, boolean possuiInsalubridade,
+			GrauInsalubridade grauInsalubridade, BigDecimal valorValeTransporte,
+			BigDecimal valorValeAlimentacaoDiario, int diasTrabalhadosNoMes) {
+		this.nome = nome;
+		this.dataAdmissao = dataAdmissao;
+		this.cargo = cargo;
+		this.salarioBruto = salarioBruto;
+		this.horasTrabalhadasPorDia = horasTrabalhadasPorDia;
+		this.dependentes = dependentes;
+		this.possuiPericulosidade = possuiPericulosidade;
+		this.possuiInsalubridade = possuiInsalubridade;
+		this.grauInsalubridade = grauInsalubridade;
+		this.valorValeTransporte = valorValeTransporte;
+		this.valorValeAlimentacaoDiario = valorValeAlimentacaoDiario;
+		this.diasTrabalhadosNoMes = diasTrabalhadosNoMes;
+	}
 
-    public LocalDate getDataAdmissao() {
-        return dataAdmissao;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setDataAdmissao(LocalDate dataAdmissao) {
-        this.dataAdmissao = dataAdmissao;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getCargo() {
-        return cargo;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public BigDecimal getSalarioBruto() {
-        return salarioBruto;
-    }
+	public LocalDate getDataAdmissao() {
+		return dataAdmissao;
+	}
 
-    public void setSalarioBruto(BigDecimal salarioBruto) {
-        this.salarioBruto = salarioBruto;
-    }
+	public void setDataAdmissao(LocalDate dataAdmissao) {
+		this.dataAdmissao = dataAdmissao;
+	}
 
-    public int getHorasTrabalhadasPorDia() {
-        return horasTrabalhadasPorDia;
-    }
+	public String getCargo() {
+		return cargo;
+	}
 
-    public void setHorasTrabalhadasPorDia(int horasTrabalhadasPorDia) {
-        this.horasTrabalhadasPorDia = horasTrabalhadasPorDia;
-    }
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
 
-    public int getDependentes() {
-        return dependentes;
-    }
+	public BigDecimal getSalarioBruto() {
+		return salarioBruto;
+	}
 
-    public void setDependentes(int dependentes) {
-        this.dependentes = dependentes;
-    }
+	public void setSalarioBruto(BigDecimal salarioBruto) {
+		this.salarioBruto = salarioBruto;
+	}
 
-    public boolean getPossuiPericulosidade() {
-        return possuiPericulosidade;
-    }
+	public int getHorasTrabalhadasPorDia() {
+		return horasTrabalhadasPorDia;
+	}
 
-    public void setPossuiPericulosidade(boolean possuiPericulosidade) {
-        this.possuiPericulosidade = possuiPericulosidade;
-    }
+	public void setHorasTrabalhadasPorDia(int horasTrabalhadasPorDia) {
+		this.horasTrabalhadasPorDia = horasTrabalhadasPorDia;
+	}
 
-    public int getNumeroDependentes() {
-        return dependentes;
-    }
+	public int getDependentes() {
+		return dependentes;
+	}
 
-    public boolean getPossuiInsalubridade() {
-        return possuiInsalubridade;
-    }
+	public void setDependentes(int dependentes) {
+		this.dependentes = dependentes;
+	}
 
-    public void setPossuiInsalubridade(boolean possuiInsalubridade) {
-        this.possuiInsalubridade = possuiInsalubridade;
-    }
+	public boolean getPossuiPericulosidade() {
+		return possuiPericulosidade;
+	}
 
-    public GrauInsalubridade getGrauInsalubridade() {
-        return grauInsalubridade;
-    }
+	public void setPossuiPericulosidade(boolean possuiPericulosidade) {
+		this.possuiPericulosidade = possuiPericulosidade;
+	}
 
-    public void setGrauInsalubridade(GrauInsalubridade grauInsalubridade) {
-        this.grauInsalubridade = grauInsalubridade;
-    }
+	public int getNumeroDependentes() {
+		return dependentes;
+	}
 
-    public BigDecimal getValorValeTransporte() {
-        return valorValeTransporte;
-    }
+	public boolean getPossuiInsalubridade() {
+		return possuiInsalubridade;
+	}
 
-    public void setValorValeTransporte(BigDecimal valorValeTransporte) {
-        this.valorValeTransporte = valorValeTransporte;
-    }
+	public void setPossuiInsalubridade(boolean possuiInsalubridade) {
+		this.possuiInsalubridade = possuiInsalubridade;
+	}
 
-    public BigDecimal getValorValeAlimentacaoDiario() {
-        return valorValeAlimentacaoDiario;
-    }
+	public GrauInsalubridade getGrauInsalubridade() {
+		return grauInsalubridade;
+	}
 
-    public void setValorValeAlimentacaoDiario(BigDecimal valorValeAlimentacaoDiario) {
-        this.valorValeAlimentacaoDiario = valorValeAlimentacaoDiario;
-    }
+	public void setGrauInsalubridade(GrauInsalubridade grauInsalubridade) {
+		this.grauInsalubridade = grauInsalubridade;
+	}
 
-    public int getDiasTrabalhadosNoMes() {
-        return diasTrabalhadosNoMes;
-    }
+	public BigDecimal getValorValeTransporte() {
+		return valorValeTransporte;
+	}
 
-    public void setDiasTrabalhadosNoMes(int diasTrabalhadosNoMes) {
-        this.diasTrabalhadosNoMes = diasTrabalhadosNoMes;
-    }
+	public void setValorValeTransporte(BigDecimal valorValeTransporte) {
+		this.valorValeTransporte = valorValeTransporte;
+	}
 
-    public Gestor getGestor() {
-        return gestor;
-    }
+	public BigDecimal getValorValeAlimentacaoDiario() {
+		return valorValeAlimentacaoDiario;
+	}
 
-    public void setGestor(Gestor gestor) {
-        this.gestor = gestor;
-    }
+	public void setValorValeAlimentacaoDiario(BigDecimal valorValeAlimentacaoDiario) {
+		this.valorValeAlimentacaoDiario = valorValeAlimentacaoDiario;
+	}
 
-    public List<Relatorio> getRelatorios() {
-        return relatorios;
-    }
+	public int getDiasTrabalhadosNoMes() {
+		return diasTrabalhadosNoMes;
+	}
 
-    public void setRelatorios(List<Relatorio> relatorios) {
-        this.relatorios = relatorios;
-    }
+	public void setDiasTrabalhadosNoMes(int diasTrabalhadosNoMes) {
+		this.diasTrabalhadosNoMes = diasTrabalhadosNoMes;
+	}
 
-    @Override
-    public BigDecimal verDescontos(Imposto imposto) {
-        return imposto.calcularImposto(this);
-    }
+	public Gestor getGestor() {
+		return gestor;
+	}
 
-    @Override
-    public Relatorio verContraCheque(LocalDate date, ArrayList<Relatorio> relatorios) {
-        if (date == null || relatorios == null) {
-            return null;
-        }
+	public void setGestor(Gestor gestor) {
+		this.gestor = gestor;
+	}
 
-        for (Relatorio relatorio : relatorios) {
-            if (relatorio != null && date.equals(relatorio.getDate())) {
-                return relatorio;
-            }
-        }
+	public List<Relatorio> getRelatorios() {
+		return relatorios;
+	}
 
-        return null;
-    }
+	public void setRelatorios(List<Relatorio> relatorios) {
+		this.relatorios = relatorios;
+	}
+
+	public UsuarioDoSistema getUsuarioDoSistema() {
+		return usuarioDoSistema;
+	}
+
+	public void setUsuarioDoSistema(UsuarioDoSistema usuarioDoSistema) {
+		this.usuarioDoSistema = usuarioDoSistema;
+	}
+
+	@Override
+	public BigDecimal verDescontos(Imposto imposto) {
+		return imposto.calcularImposto(this);
+	}
+
+	@Override
+	public Relatorio verContraCheque(LocalDate date, ArrayList<Relatorio> relatorios) {
+		if (date == null || relatorios == null) {
+			return null;
+		}
+
+		for (Relatorio relatorio : relatorios) {
+			if (relatorio != null && date.equals(relatorio.getDate())) {
+				return relatorio;
+			}
+		}
+
+		return null;
+	}
 }

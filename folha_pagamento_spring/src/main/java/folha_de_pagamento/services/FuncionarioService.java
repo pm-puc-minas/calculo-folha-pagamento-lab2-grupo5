@@ -7,6 +7,7 @@ import folha_de_pagamento.repository.FuncionarioRepository;
 import folha_de_pagamento.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -56,11 +57,17 @@ public class FuncionarioService {
         funcionario.setValorValeTransporte(funcionarioDetails.getValorValeTransporte());
         funcionario.setValorValeAlimentacaoDiario(funcionarioDetails.getValorValeAlimentacaoDiario());
         funcionario.setDiasTrabalhadosNoMes(funcionarioDetails.getDiasTrabalhadosNoMes());
-        
+
         return funcionarioRepository.save(funcionario);
     }
 
+    @Transactional
     public void deletarFuncionario(Long id) {
-        funcionarioRepository.deleteById(id);
+        Funcionario funcionario = funcionarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Funcionário não encontrado com id: " + id));
+
+        UsuarioDoSistema usuario = funcionario.getUsuarioDoSistema();
+
+        funcionarioRepository.delete(funcionario);
     }
 }
